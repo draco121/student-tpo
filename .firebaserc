@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "test-4bf63": {
+      "hosting": {
+        "student-tpo": [
+          "test-4bf63"
+        ]
+      }
+    }
+  }
+}
