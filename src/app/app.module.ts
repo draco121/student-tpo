@@ -22,6 +22,7 @@ import { Form2Component } from './profile/fillform/form2/form2.component';
 import { Form3Component } from './profile/fillform/form3/form3.component';
 import { Form4Component } from './profile/fillform/form4/form4.component';
 import { Form5Component } from './profile/fillform/form5/form5.component';
+import {CustomValidators} from './CustomValidators/CustomValidators';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { Form5Component } from './profile/fillform/form5/form5.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [CustomValidators],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
