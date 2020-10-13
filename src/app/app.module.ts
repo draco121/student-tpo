@@ -17,6 +17,11 @@ import { DashboardComponent } from './profile/dashboard/dashboard.component';
 import { FillformComponent } from './profile/fillform/fillform.component';
 import { UpdateformComponent } from './profile/updateform/updateform.component';
 import { HeaderComponent } from './header/header.component';
+import { Form1Component } from './profile/fillform/form1/form1.component';
+import { Form2Component } from './profile/fillform/form2/form2.component';
+import { Form3Component } from './profile/fillform/form3/form3.component';
+import { Form4Component } from './profile/fillform/form4/form4.component';
+import { Form5Component } from './profile/fillform/form5/form5.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { HeaderComponent } from './header/header.component';
     DashboardComponent,
     FillformComponent,
     UpdateformComponent,
-    HeaderComponent
+    HeaderComponent,
+    Form1Component,
+    Form2Component,
+    Form3Component,
+    Form4Component,
+    Form5Component
   ],
   imports: [
     BrowserModule,
