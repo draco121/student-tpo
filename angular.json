@@ -134,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "student-tpo"
+  "defaultProject": "student-tpo",
+  "cli": {
+    "analytics": "6bf9c7d2-95b5-4a9c-aee7-88a98a75704c"
+  }
 }

@@ -1,95 +1,113 @@
+<!DOCTYPE html>
 
-<div class="container card" style="padding: 5px; margin-bottom: 10px;">
-    <h3 class="h3 text-center">Register</h3>
-    <div class="row">
-        <div class="col-lg-9" style="margin: auto auto;">
-            <form>
-                <div class="form-row form-group">
-                    <div class="col">
-                        <label for='fname'>First Name</label>
-                        <input type='text' id='fname' class="form-control" style="text-transform: uppercase;">
+<html>
+    <head>
+        <title>Registration page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div>
+               <h1>Student Registration</h1> 
+            </div>
+            <div>
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+                    <div class="form-group">
+                      <label>First Name*</label>
+                      <input formControlName="firstName" type="first name" class="form-control" placeholder="First Name" required>
                     </div>
-                    <div class="col">
-                      <label for='mname'>Middile Name</label>
-                      <input type='text' id='mname' class="form-control" style="text-transform: uppercase;">
-                  </div>
-                    <div class="col">
-                        <label for='lname'>Last Name</label>
-                        <input type='text' id='lname' class="form-control" style="text-transform: uppercase;">
+                    
+                   
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input formControlName="lastName" type="text" class="form-control"placeholder="Last Name" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for='batch'>Batch</label>
-                    <input type='text' id='batch' class="form-control" placeholder="Passing Year">
-                </div>
-                <div class="form-group">
-                    <label for='branch'>Branch</label>
-                    <select id='branch' class="form-control" style="text-transform: uppercase;">
-                        <option selected disabled>select one</option>
-                        <option value='CSE'>Computer Science and Engineering</option>
-                        <option value='CE'>Civil Engineering</option>
-                        <option value='ME'>Mechanical Engineering</option>
-                        <option value='IT'>Information Technology</option>
-                        <option value='ETE'>Electronics And Telecommunication Engineering</option>
-                        <option value='MCA'>Master of Computer Application</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for='rollno'>Enrollment Number</label>
-                    <input type='text' id='rollno' class="form-control" style="text-transform: uppercase;">
-                </div>
-                <div class="form-group form-row">
-                    <div class="col-lg-6">
-                        <label for='phoneno'>Phone</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">+91</div>
-                            </div>
-                            <input type="text" class="form-control" id="phoneno">
-                          </div>
+                    
+                    <div class="form-group">
+                        <label>Enrollment no*</label>
+                        <input formControlName="Enrollment" type="enrollment" class="form-control" placeholder="Enrollment no." required>
                     </div>
-                    <div class="col">
-                        <button class="btn btn-success" style="margin-top: 32px;">send otp</button>
-                    </div>
-                    <div class="col">
-                        <label for='otp1'>Enter OTP</label>
-                        <input type='text' id='otp1' class="form-control" placeholder="enter otp">
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" style="margin-top: 32px;">verify</button>
-                    </div>
-                </div>
-                <div class="form-group form-row">
-                    <div class="col-lg-6">
-                        <label for='email'>Email</label>
-                        <input type='email' id='email' class="form-control">
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" style="margin-top: 32px;">send otp</button>
-                    </div>
-                    <div class="col">
-                        <label for='otp2'>Enter OTP</label>
-                        <input type='text' id='otp2' class="form-control" placeholder="enter otp">
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-success" style="margin-top: 32px;">verify</button>
-                    </div>
-                </div>
 
-                <div class="form-group form-row">
-                    <div class="col">
-                        <label for="password1">Password</label>
-                        <input type='password' id='state' class="form-control">
+                    <div class=form-group>
+                        <label >Branch*</label>
+                        <select formControlName="Branch" class="form-control">
+                          <option>Computer Science & Engineering</option>
+                          <option>Information Technology</option>
+                          <option>Electronics & Communications</option>
+                          <option>Electrical Engineering</option>
+                          <option>Civil Engineering</option>
+                          <option>Mechanical Engineering</option>
+                          <option>Industrial Production Engineering</option>
+                        </select>
                     </div>
-                    <div class="col">
-                        <label for='password2'>Confirm Password</label>
-                        <input type='password' id='password2' class="form-control">
+                    <div class=form-group>
+                        <label>Selct graduation year*</label>
+                        <select formControlName="gradYear" class="form-control">
+                          <option>2021</option>
+                          <option>2022</option>
+                          <option>2023</option>
+                          <option>2024</option>
+                        </select>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-success">Register</button>
-                </div>
-            </form>
+                
+                    
+                    <div class="form-group">
+
+                        <label>E-mail*</label>
+                        <input formControlName="Email" type="Email" class="form-control" placeholder=" E-mail (e.g john123@xyz.com)" required>
+                        <span class="text-danger"
+                        *ngIf="(Email.touched || submitted) && Email.errors?.required">
+                        Email is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="Email.touched && Email.errors?.email">
+                        Enter a valid email address
+                    </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact no.*</label>
+                        <input formControlName="Contact" type="mobile no" class="form-control" placeholder="Enter your 10 digit mobile no." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password*</label>
+                        <input formControlName="Password" type="Password" class="form-control" placeholder="Enter a new password" required>
+                        <span class="text-danger"
+                          *ngIf="(Password.touched || submitted) && Password.errors?.required">
+                           Password is required
+                       </span>
+                        
+                        <span *ngIf="Password.touched && Password.errors?.pattern" class="text-danger">
+                        Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                        letter and 1 number
+                    </span>
+                       
+                      
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password*</label>
+                        <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Re-type the password" required>
+                    <span class="text-danger"
+                        *ngIf="(confirmPassword.touched || submitted)&& confirmPassword.errors?.required">
+                        Confirm Password is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="confirmPassword.touched && confirmPassword.errors?.passwordMismatch">
+                        Passwords doesnot match
+                    </span> 
+                        <input type="checkbox" >Show Password
+                    </div>
+                    <div class="form-group">
+                        
+                        <button  class="btn button-submit" style="color:black;background:lightskyblue" placeholder="Mobile no.">Submit</button>
+                    </div>
+                </form>
+                
+                {{registrationForm.value | json}}
+            </div>
         </div>
-    </div>
-</div>
+
+    </body>
+</html>
