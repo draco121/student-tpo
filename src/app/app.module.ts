@@ -17,7 +17,7 @@ import { DashboardComponent } from './profile/dashboard/dashboard.component';
 import { FillformComponent } from './profile/fillform/fillform.component';
 import { UpdateformComponent } from './profile/updateform/updateform.component';
 import { HeaderComponent } from './header/header.component';
-
+import {CustomValidators} from './CustomValidators/CustomValidators'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,7 @@ import { HeaderComponent } from './header/header.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [CustomValidators],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
