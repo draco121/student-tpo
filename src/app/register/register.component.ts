@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   sendphoneotp(){
-    this.afa.signInWithPhoneNumber(this.register.value.phoneno,window['recaptcha']).
+    this.afa.signInWithPhoneNumber('+91'+this.register.value.phoneno,window['recaptcha']).
     then((confirmationResult)=>{
       this.isphoneotpsent=true;
       window['confirmationresult'] = confirmationResult
@@ -82,14 +82,14 @@ export class RegisterComponent implements OnInit {
 
   }
   sendemailotp(){
-    this.afa.(this.register.value.phoneno,window['recaptcha']).
+    this.afa.sendSignInLinkToEmail(this.register.value.email,window['recaptcha']).
     then((confirmationResult)=>{
       this.isemailotpsent=true;
       window['confirmationresult'] = confirmationResult
     }).catch(err=>{
         console.log(err)
     })
-      
+
   }
 
   onSubmit() {
