@@ -15,11 +15,16 @@ import { Form5Component } from './profile/fillform/form5/form5.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateformComponent } from './profile/updateform/updateform.component';
 import { RegisterComponent } from './register/register.component';
+import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'verifyemail',
+    component: VerifyemailComponent
   },
   {
     path: 'register',

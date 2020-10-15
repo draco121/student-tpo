@@ -56,7 +56,7 @@ export class ForgotpasswordComponent implements OnInit {
 
   sendotp() {
     let appVerifier = window['recaptcha']
-    this.afa.signInWithPhoneNumber(this.doc.phoneno,window['recaptcha']).
+    this.afa.signInWithPhoneNumber('+91'+this.doc.phoneno,window['recaptcha']).
     then((confirmationResult)=>{
       this.isotpsent = true;
       window['confirmationresult'] = confirmationResult

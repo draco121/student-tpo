@@ -1,5 +1,4 @@
-import { UpperCasePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators} from '@angular/forms';
@@ -12,19 +11,8 @@ import { CustomValidators } from '../CustomValidators/CustomValidators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit,AfterViewInit,DoCheck {
 
-
-  constructor(private fb:FormBuilder,
-    private afs: AngularFirestore,
-    private validate: CustomValidators,
-    private afa: AngularFireAuth)
-  {
-    this.db = this.afs.collection('student').ref
-    window['recaptcha'] = new firebase.auth.RecaptchaVerifier('recaptcha',{
-      size :'invisible'
-    });
-  }
   register = this.fb.group({
     fname:['',Validators.required],
     mname:[''],
@@ -33,13 +21,51 @@ export class RegisterComponent implements OnInit {
     branch:['',Validators.required],
     batch:['',Validators.required],
     email:['',[Validators.required,Validators.email]],
-    phone:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+    phone:['',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]],
+    phoneotp: [''],
     password:['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]],
     cpassword:['',[Validators.required,]]
   },{validators: this.validate.passmatch})
   db: CollectionReference;
   isphoneotpsent=false;
-  isemailotpsent=false
+  isemailotpsent=false;
+  isphoneotpverified=false;
+  isemailotpverified=false;
+  local = window.localStorage;
+  alert='';
+  isforminvalid = true;
+
+  constructor(private fb:FormBuilder,
+    private afs: AngularFirestore,
+    private validate: CustomValidators,
+    private afa: AngularFireAuth)
+  {
+    this.db = this.afs.collection('student').ref
+  }
+  ngDoCheck(): void {
+    let p = this.local.getItem('emailverified')
+    if(p==='1')
+    {
+      this.isemailotpverified = true;
+      this.local.removeItem('emailverified');
+    }
+
+    if(this.register.invalid)
+    {
+      this.isforminvalid = true;
+    }else{
+      if(this.isphoneotpverified&&this.isemailotpverified)
+      this.isforminvalid=false;
+    }
+  }
+  ngAfterViewInit(): void {
+    window['recaptcha'] = new firebase.auth.RecaptchaVerifier('recaptcha',{
+      size :'invisible'
+    });
+  }
+
+
+
   get fname(){
     return this.register.get('fname')
   }
@@ -72,33 +98,70 @@ export class RegisterComponent implements OnInit {
   }
 
   sendphoneotp(){
-    this.afa.signInWithPhoneNumber('+91'+this.register.value.phoneno,window['recaptcha']).
-    then((confirmationResult)=>{
-      this.isphoneotpsent=true;
-      window['confirmationresult'] = confirmationResult
-    }).catch(err=>{
-        console.log(err)
-    })
+    try{
+      this.afa.signInWithPhoneNumber(this.register.value.phone,window['recaptcha'])
+      .then(confirmationResult=>{
+        window['confirmationResult'] = confirmationResult;
+        this.isphoneotpsent = true;
+      }).catch(err=>{
+        this.alert = 'unknown error occured'
+      })
+    }catch(err){
+      console.log(err)
+    }
 
   }
+  verifyphonenotp(){
+    let confirmationResult = window['confirmationResult']
+    try{
+      confirmationResult.confirm(this.register.value.phoneotp).then(res=>{
+      this.isphoneotpverified = true;
+    }).catch(err=>{
+      console.log(err)
+      this.alert = 'unknown error occured'
+    })
+    } catch(err){
+      console.log(err)
+    }
+
+
+  }
+
   sendemailotp(){
-    this.afa.sendSignInLinkToEmail(this.register.value.email,window['recaptcha']).
-    then((confirmationResult)=>{
-      this.isemailotpsent=true;
-      window['confirmationresult'] = confirmationResult
-    }).catch(err=>{
+    const actionCodeSettings = {
+      // Your redirect URL
+      url: 'http://localhost:4200/verifyemail',
+      handleCodeInApp: true,
+    };
+    this.afa.sendSignInLinkToEmail(this.register.value.email,actionCodeSettings)
+      .then(confirmationResult=>{
+        this.local.setItem('email',this.register.value.email)
+        this.isemailotpsent = true;
+      }).catch(err=>{
         console.log(err)
-    })
-
+        this.alert = 'unknown error occured'
+      })
   }
 
-  onSubmit() {
+  Submit() {
+    let isdocpresent = false;
     let id:string = this.register.value.rollno
+    this.db.doc(id.toUpperCase()).get().then(doc=>{
+      if(doc.exists){
+        isdocpresent =true;
+      }
+    });
+    if(!isdocpresent){
       this.db.doc(id.toUpperCase()).set(this.register.value).then(res=>{
         console.log(res)
+        window.alert('registration successfull')
       }).catch(err=>{
         console.log(err)
       })
+    }else{
+      this.alert ='account already exists'
+    }
+
   }
 
 

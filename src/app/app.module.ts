@@ -24,6 +24,7 @@ import { Form4Component } from './profile/fillform/form4/form4.component';
 import { Form5Component } from './profile/fillform/form5/form5.component';
 import {CustomValidators} from './CustomValidators/CustomValidators';
 import { FormhandlerService } from './profile/fillform/formhandler.service';
+import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FormhandlerService } from './profile/fillform/formhandler.service';
     Form2Component,
     Form3Component,
     Form4Component,
-    Form5Component
+    Form5Component,
+    VerifyemailComponent
   ],
   imports: [
     BrowserModule,
