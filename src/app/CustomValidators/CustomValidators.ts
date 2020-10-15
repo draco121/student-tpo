@@ -1,18 +1,11 @@
-import { Injectable } from '@angular/core';
-import{FormGroup, ValidatorFn, AbstractControl,FormControl} from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 
-export class CustomValidators
-{
-  patternValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
-      if (!control.value) {
-        return null;
-      }
-      const regex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
-      const valid = regex.test(control.value);
-      return valid ? null : { invalidPassword: true };
-    };
-  }
-  
+export class CustomValidators{
+  passmatch: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    const pass1 = control.get('password');
+    const pass2 = control.get('cpassword');
+
+    return pass1 && pass2 && pass1.value !== pass2.value ? { mismatch: true } : null;
+  };
 }

@@ -1,15 +1,207 @@
-<div class="card container">
-  <div class="card-header">
-    ACADEMIC PERFORMANCE
-  </div>
+<form [formGroup]='form3' (ngSubmit)='submit()'>
+  <div class="card container">
+    <div class="card-header">
+      ACADEMIC PERFORMANCE
+    </div>
 
-  <div class="form-group">
-    <label>HIGH SCHOOL (X) DETAILS</label>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="tnboard">BOARD</label>
-      <input type='text' id="tnboard">
+    <div class="form-group">
+      <label>HIGH SCHOOL (X) DETAILS</label>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="tnboard">BOARD</label>
+        <input type='text' id="tnboard" class="form-control" formControlName='tn_board'>
+      </div>
+      <div class="col">
+        <label for="tnpassyear">PASSING YEAR</label>
+        <input type='text' id="tnpassyear" class="form-control" formControlName='tn_pass_year'>
+      </div>
+      <div class="col">
+        <label for="tnaggpercent">AGGREGATE PERCENTAGE</label>
+        <input type='text' id="tnaggpercent" class="form-control" formControlName='tn_agg_percent'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="tnschool">SCHOOL NAME</label>
+        <input type='text' class="form-control" id="tnschool" formControlName='tn_school'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="tncity">CITY</label>
+        <input type='text' class="form-control" id="tncity" formControlName='tn_city'>
+      </div>
+      <div class="col">
+        <label for="tnstate">STATE</label>
+        <input type='text' class="form-control" id="tnstate" formControlName='tn_state'>
+      </div>
+      <div class="col">
+        <label for="tnzip">ZIP</label>
+        <input type='text' class="form-control" id="tnzip" formControlName='tn_zip'>
+      </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+      <label>HIGHER SECONDARY SCHOOL (XII) DETAILS</label>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="twboard">BOARD</label>
+        <input type='text' id="twboard" class="form-control" formControlName='tw_board'>
+      </div>
+      <div class="col">
+        <label for="twpassyear">PASSING YEAR</label>
+        <input type='text' id="twpassyear" class="form-control" formControlName='tw_pass_year'>
+      </div>
+      <div class="col">
+        <label for="twaggpercent">AGGREGATE PERCENTAGE</label>
+        <input type='text' id="twaggpercent" class="form-control" formControlName='tw_agg_percent'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="twschool">SCHOOL NAME</label>
+        <input type='text' class="form-control" id="twschool" formControlName='tw_school'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="twcity">CITY</label>
+        <input type='text' class="form-control" id="twcity" formControlName='tw_city'>
+      </div>
+      <div class="col">
+        <label for="twstate">STATE</label>
+        <input type='text' class="form-control" id="twstate" formControlName='tw_state'>
+      </div>
+      <div class="col">
+        <label for="twzip">ZIP</label>
+        <input type='text' class="form-control" id="twzip" formControlName='tw_zip'>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="from-group">
+      <label>DEGREE DETAILS</label>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="gdegree">GRADUATION DEGREE</label>
+        <select id="gdegree" class="form-control" formControlName='g_degree'>
+          <option selected disabled>select one</option>
+          <option value="BE">BE</option>
+          <option value="BTECH">B.TECH</option>
+          <option value="BCA">BCA</option>
+          <option value="BSC">B.SC</option>
+          <option value="BCOM">B.COM</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for='gcourse'>DEGREE COURSE</label>
+        <select id='gcourse' class="form-control" formControlName='g_course'>
+          <option selected disabled>select one</option>
+          <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
+          <option value='CE'>CIVIL ENGINEERING</option>
+          <option value='ME'>MECHANICAL ENGINEERING</option>
+          <option value='IT'>INFORMATION TECHNOLOGY</option>
+          <option value="EX">ELECTRICAL AND ELECTRONICS</option>
+          <option value="EE">ELECTRICAL ENGINEERING</option>
+          <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
+          <option value="EIE">ELECTRONICS AND INSTRUMENTATION</option>
+          <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
+          <option value='IP'>INDUSTRIAL PRODUCTION</option>
+          <option value='PHYSICS'>PHYSICS</option>
+          <option value='MATHEMATICS'>MATHEMATICS</option>
+          <option value='CHEMISTRY'>CHEMISTRY</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="guniversity">UNIVERSITY NAME</label>
+        <input id="guniversity" class="form-control" type='text' formControlName='g_university'>
+      </div>
+      <div class="col">
+        <label for="gpassyear">PASSING YEAR</label>
+        <input id="gpassyear" class="form-control" type='text' formControlName='g_pass_year'>
+      </div>
+      <div class="col">
+        <label for="gaggpercent">AGGREGAE PERCENTAGE</label>
+        <input id="gaggpercent" class="form-control" type='text' formControlName='g_agg_percent'>
+      </div>
+    </div>
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="gcity">CITY</label>
+        <input id="gcity" class="form-control" type='text' formControlName='g_city'>
+      </div>
+      <div class="col">
+        <label for="gstate">STATE</label>
+        <input id="gstate" class="form-control" type='text' formControlName='g_state'>
+      </div>
+      <div class="col">
+        <label for="gzip">ZIP</label>
+        <input id="gzip" class="form-control" type='text' formControlName='g_zip'>
+      </div>
+    </div>
+    <hr />
+
+    <div class="from-group">
+      <label>DIPLOMA DETAILS</label>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='dcourse'>DIPLOMA COURSE</label>
+        <select id='dcourse' class="form-control" formControlName='d_course'>
+          <option selected disabled>select one</option>
+          <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
+          <option value='CE'>CIVIL ENGINEERING</option>
+          <option value='ME'>MECHANICAL ENGINEERING</option>
+          <option value='IT'>INFORMATION TECHNOLOGY</option>
+          <option value="EX">ELECTRICAL AND ELECTRONICS</option>
+          <option value="EE">ELECTRICAL ENGINEERING</option>
+          <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
+          <option value="EIE">ELECTRONICS AND INSTRUMENTATION</option>
+          <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
+          <option value='IP'>INDUSTRIAL PRODUCTION</option>
+          <option value='PHYSICS'>PHYSICS</option>
+          <option value='MATHEMATICS'>MATHEMATICS</option>
+          <option value='CHEMISTRY'>CHEMISTRY</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="duniversity">UNIVERSITY NAME</label>
+        <input id="duniversity" class="form-control" type='text' formControlName='d_university'>
+      </div>
+      <div class="col">
+        <label for="dpassyear">PASSING YEAR</label>
+        <input id="dpassyear" class="form-control" type='text' formControlName='d_passyear'>
+      </div>
+      <div class="col">
+        <label for="daggpercent">AGGREGAE PERCENTAGE</label>
+        <input id="daggpercent" class="form-control" type='text' formControlName='d_agg_percent'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="dcity">CITY</label>
+        <input id="dcity" class="form-control" type='text' formControlName='d_city'>
+      </div>
+      <div class="col">
+        <label for="dstate">STATE</label>
+        <input id="dstate" class="form-control" type='text' formControlName='d_state'>
+      </div>
+      <div class="col">
+        <label for="dzip">ZIP</label>
+        <input id="dzip" class="form-control" type='text' formControlName='d_zip'>
+      </div>
     </div>
   </div>
-</div>
+</form>

@@ -1,6 +1,10 @@
+import { UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators,NgForm, Form, FormGroup, AbstractControl } from '@angular/forms';
-import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular/platform-browser';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
+import { FormBuilder, Validators} from '@angular/forms';
+import * as firebase from 'firebase';
+import { CustomValidators } from '../CustomValidators/CustomValidators';
 
 
 @Component({
@@ -10,83 +14,99 @@ import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular
 })
 export class RegisterComponent implements OnInit {
 
-  submitted:boolean =false;
-   registrationForm:FormGroup;
-  constructor(private fb:FormBuilder)
-  {}
-  
-  
-   ngOnInit(){this.registrationForm =this.fb.group({
-   firstName: ['',Validators.required],
-   lastName: ['',Validators.required],
-   Enrollment: ['',Validators.required],
-   Branch: ['',Validators.required],
-   gradYear: ['',Validators.required],
-   Email: ['',[Validators.required,Validators.email]],
-   Contact:['',Validators.required],
-   Password:['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]],
-   confirmPassword: ['',[Validators.required]]
-  });
-}
- 
-/*MatchPassword(Password:string,confirmPassword:string) {
-  const condition =
-    Password!==confirmPassword;
 
-  return condition ? { passwordMismatch: true } : null;
-}*/
-
-  get firstName()
+  constructor(private fb:FormBuilder,
+    private afs: AngularFirestore,
+    private validate: CustomValidators,
+    private afa: AngularFireAuth)
   {
-    return this.registrationForm.get('firstName');
+    this.db = this.afs.collection('student').ref
+    window['recaptcha'] = new firebase.auth.RecaptchaVerifier('recaptcha',{
+      size :'invisible'
+    });
+  }
+  register = this.fb.group({
+    fname:['',Validators.required],
+    mname:[''],
+    lname:['',Validators.required],
+    rollno:['',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
+    branch:['',Validators.required],
+    batch:['',Validators.required],
+    email:['',[Validators.required,Validators.email]],
+    phone:['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+    password:['',[Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]],
+    cpassword:['',[Validators.required,]]
+  },{validators: this.validate.passmatch})
+  db: CollectionReference;
+  isphoneotpsent=false;
+  isemailotpsent=false
+  get fname(){
+    return this.register.get('fname')
+  }
+  get lname(){
+    return this.register.get('lname')
+  }
+  get rollno(){
+    return this.register.get('rollno')
+  }
+  get email(){
+    return this.register.get('email')
+  }
+  get batch(){
+    return this.register.get('batch')
+  }
+  get branch(){
+    return this.register.get('branch')
+  }
+  get phone(){
+    return this.register.get('phone')
+  }
+  get password(){
+    return this.register.get('password')
+  }
+  get cpassword(){
+    return this.register.get('cpassword')
   }
 
-  get lastName()
-  {
-    return this.registrationForm.get('lastName');
+  ngOnInit(){
   }
-  get Enrollment()
-  {
-    return this.registrationForm.get('Enrollment');
+
+  sendphoneotp(){
+    this.afa.signInWithPhoneNumber(this.register.value.phoneno,window['recaptcha']).
+    then((confirmationResult)=>{
+      this.isphoneotpsent=true;
+      window['confirmationresult'] = confirmationResult
+    }).catch(err=>{
+        console.log(err)
+    })
+
   }
-  get Branch()
-  {
-    return this.registrationForm.get('Branch');
+  sendemailotp(){
+    this.afa.(this.register.value.phoneno,window['recaptcha']).
+    then((confirmationResult)=>{
+      this.isemailotpsent=true;
+      window['confirmationresult'] = confirmationResult
+    }).catch(err=>{
+        console.log(err)
+    })
+      
   }
-  get gradYear()
-  {
-    return this.registrationForm.get('gradYear');
-  }
-  get  Email()
-  {
-    return this.registrationForm.get('Email');
-  }
-  get Contact()
-  {
-    return this.registrationForm.get('Contact');
-  }
-  get Password()
-  {
-    return this.registrationForm.get('Password');
-  }
-  get confirmPassword()
-  {
-    return this.registrationForm.get('confirmPassword');
-  }
+
   onSubmit() {
-    this.submitted = true;
-    if (this.registrationForm.valid) {
-      alert('Form Submitted succesfully!!!\n Check the values in browser console.');
-      console.table(this.registrationForm.value);
-    }
+    let id:string = this.register.value.rollno
+      this.db.doc(id.toUpperCase()).set(this.register.value).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
+      })
   }
 
-  
-   
-  
 
 
-  
 
-  
+
+
+
+
+
 }

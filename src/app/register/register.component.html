@@ -1,136 +1,118 @@
-<div class="container-fluid">
-  <div>
-    <h1>Student Registration</h1>
-  </div>
-  <div>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label>First Name*</label>
-        <input formControlName="firstName" type="first name" class="form-control" placeholder="First Name" required>
-      </div>
+<form [formGroup]='register' (ngSubmit)='onSubmit()'>
 
-
-      <div class="form-group">
-        <label>Last Name</label>
-        <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name" required>
-      </div>
-      <div class="form-group">
-        <label for='batch'>Batch</label>
-        <input type='text' id='batch' class="form-control" placeholder="Passing Year">
-      </div>
-      <div class="form-group">
-        <label for='branch'>Branch</label>
-        <select id='branch' class="form-control">
-          <option selected disabled>select one</option>
-          <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
-          <option value='CE'>CIVIL ENGINEERING</option>
-          <option value='ME'>MECHANICAL ENGINEERING</option>
-          <option value='IT'>INFORMATION TECHNOLOGY</option>
-          <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
-          <option value='IP'>INDUSTRIAL PRODUCTION</option>
-          <option value='APPLIED-PHYSICS'>APPLIED PHYSICS</option>
-          <option value='APPLIED-MATHEMATICS'>APPLIED MATHEMATICS</option>
-          <option value='APPLIED-CHEMISTRY'>APPLIED CHEMISTRY</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for='rollno'>Enrollment Number</label>
-        <input type='text' id='rollno' class="form-control" style="text-transform: uppercase;">
-      </div>
-      <div class="form-group form-row">
-        <div class="col-lg-6">
-          <label for='phoneno'>Phone</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">+91</div>
+  <div class="container card" style="padding: 5px; margin-bottom: 10px;">
+    <h3 class="h3 text-center">Register</h3>
+    {{register.value|json}}
+    <div class="row">
+      <div class="col-lg-9" style="margin: auto auto;">
+          <div class="form-row form-group">
+            <div class="col">
+              <label for='fname'>First Name</label>
+              <input type='text' id='fname' class="form-control" formControlName='fname' [class.is-invalid]='fname.invalid && fname.touched'>
+              <small *ngIf='fname.invalid&&fname.touched' class="text-danger"> field is required</small>
             </div>
-            <input type="text" class="form-control" id="phoneno">
+            <div class="col">
+              <label for='mname'>Middile Name</label>
+              <input type='text' id='mname' class="form-control" formControlName='mname'>
+            </div>
+            <div class="col">
+              <label for='lname'>Last Name</label>
+              <input type='text' id='lname' class="form-control" formControlName='lname' [class.is-invalid]='lname.invalid && lname.touched'>
+              <small *ngIf='lname.invalid && lname.touched' class="text-danger">this field is required</small>
+            </div>
           </div>
-          =======
-
           <div class="form-group">
-            <label>Enrollment no*</label>
-            <input formControlName="Enrollment" type="enrollment" class="form-control" placeholder="Enrollment no."
-              required>
-            >>>>>>> d4fbfd95df594e957c4a7a3866b1dea78135a418
+            <label for='batch'>Batch</label>
+            <input type='text' id='batch' class="form-control" placeholder="Passing Year" formControlName='batch' [class.is-invalid]='batch.invalid && batch.touched'>
+            <small *ngIf='batch.invalid && batch.touched' class="text-danger">this field is required</small>
           </div>
-
-          <div class=form-group>
-            <label>Branch*</label>
-            <select formControlName="Branch" class="form-control">
-              <option>Computer Science & Engineering</option>
-              <option>Information Technology</option>
-              <option>Electronics & Communications</option>
-              <option>Electrical Engineering</option>
-              <option>Civil Engineering</option>
-              <option>Mechanical Engineering</option>
-              <option>Industrial Production Engineering</option>
+          <div class="form-group">
+            <label for='branch'>Branch</label>
+            <select id='branch' class="form-control" formControlName='branch' [class.is-invalid]='branch.invalid && branch.touched'>
+              <option selected disabled>select one</option>
+              <option value='CSE'>Computer Science and Engineering</option>
+              <option value='CE'>Civil Engineering</option>
+              <option value='ME'>Mechanical Engineering</option>
+              <option value='IT'>Information Technology</option>
+              <option value='ETE'>Electronics And Telecommunication Engineering</option>
+              <option value='MCA'>Master of Computer Application</option>
             </select>
-          </div>
-          <div class=form-group>
-            <label>Selct graduation year*</label>
-            <select formControlName="gradYear" class="form-control">
-              <option>2021</option>
-              <option>2022</option>
-              <option>2023</option>
-              <option>2024</option>
-            </select>
-          </div>
-
-
-          <div class="form-group">
-
-            <label>E-mail*</label>
-            <input formControlName="Email" type="Email" class="form-control" placeholder=" E-mail (e.g john123@xyz.com)"
-              required>
-            <span class="text-danger" *ngIf="(Email.touched || submitted) && Email.errors?.required">
-              Email is required
-            </span>
-            <span class="text-danger" *ngIf="Email.touched && Email.errors?.email">
-              Enter a valid email address
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>Contact no.*</label>
-            <input formControlName="Contact" type="mobile no" class="form-control"
-              placeholder="Enter your 10 digit mobile no." required>
-          </div>
-
-          <div class="form-group">
-            <label>Password*</label>
-            <input formControlName="Password" type="Password" class="form-control" placeholder="Enter a new password"
-              required>
-            <span class="text-danger" *ngIf="(Password.touched || submitted) && Password.errors?.required">
-              Password is required
-            </span>
-
-            <span *ngIf="Password.touched && Password.errors?.pattern" class="text-danger">
-              Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
-              letter and 1 number
-            </span>
-
-
-          </div>
-
-          <div class="form-group">
-            <label>Confirm Password*</label>
-            <input formControlName="confirmPassword" type="password" class="form-control"
-              placeholder="Re-type the password" required>
-            <span class="text-danger" *ngIf="(confirmPassword.touched || submitted)&& confirmPassword.errors?.required">
-              Confirm Password is required
-            </span>
-            <span class="text-danger" *ngIf="confirmPassword.touched && confirmPassword.errors?.passwordMismatch">
-              Passwords doesnot match
-            </span>
-            <input type="checkbox">Show Password
+            <small *ngIf='branch.invalid && branch.touched' class="text-danger">this field is required</small>
           </div>
           <div class="form-group">
-
-            <button class="btn button-submit" style="color:black;background:lightskyblue"
-              placeholder="Mobile no.">Submit</button>
+            <label for='rollno'>Enrollment Number</label>
+            <input type='text' id='rollno' class="form-control" formControlName='rollno' [class.is-invalid]='rollno.invalid && rollno.touched'>
+            <div *ngIf='rollno.invalid && rollno.touched'>
+              <small *ngIf='(rollno.errors.minlength)' class="text-danger">invalid enrollment number</small>
+              <small *ngIf='rollno.errors.required' style="color:red;">this field is required</small>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-lg-6">
+              <label for='phoneno'>Phone</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">+91</div>
+                </div>
+                <input type="text" class="form-control" id="phoneno" formControlName='phone' [class.is-invalid]='phone.invalid&&phone.touched'>
+              </div>
+              <small *ngIf='phone.invalid && phone.touched' class="text-danger">this field is required</small>
+            </div>
+            <div class="col">
+              <button class="btn btn-success" style="margin-top: 32px;" (click)='sendphoneotp()'>send otp</button>
+            </div>
+            <div class="col" *ngIf='isphoneotpsent'>
+              <label for='otp1'>Enter OTP</label>
+              <input type='text' id='otp1' class="form-control" placeholder="enter otp">
+            </div>
+            <div class="col" *ngIf='isphoneotpsent'>
+              <button class="btn btn-success" style="margin-top: 32px;">verify</button>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-lg-6">
+              <label for='email'>Email</label>
+              <input type='email' id='email' class="form-control" formControlName='email' [class.is-invalid]='email.invalid && email.touched'>
+              <div *ngIf='email.invalid && email.touched'>
+                <small *ngIf='email.errors?.email' class="text-danger">please enter a valid email</small>
+                <small *ngIf='email.errors?.required' class='text-danger'>this field is required</small>
+              </div>
+            </div>
+            <div class="col">
+              <button class="btn btn-success" style="margin-top: 32px;" (click)='sendemailotp()'>send otp</button>
+            </div>
+            <div class="col" *ngIf='isemailotpsent'>
+              <label for='otp2'>Enter OTP</label>
+              <input type='text' id='otp2' class="form-control" placeholder="enter otp">
+            </div>
+            <div class="col" *ngIf='isemailotpsent'>
+              <button class="btn btn-success" style="margin-top: 32px;">verify</button>
+            </div>
           </div>
 
-          {{registrationForm.value | json}}
-        </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <label for="password1">Password</label>
+              <input type='password' id='state' class="form-control" formControlName='password' [class.is-invalid]='password.invalid && password.touched'>
+              <div *ngIf='password.invalid && password.touched'>
+                <small *ngIf='password.errors?.required' class="text-danger">please enter password</small>
+                <small *ngIf='password.errors?.pattern' class="text-danger">Password must have minimum 8 characters, at least one uppercase letter, one lowercase
+                  letter and one number</small>
+              </div>
+            </div>
+            <div class="col">
+              <label for='password2'>Confirm Password</label>
+              <input type='password' id='password2' class="form-control" formControlName='cpassword' [class.is-invalid]='cpassword.invalid && cpassword.touched'>
+              <div *ngIf='cpassword.invalid && cpassword.touched'>
+                <small *ngIf='cpassword.errors?.required' class="text-danger">please re-enter password</small>
+              </div>
+              <small *ngIf='register.errors?.mismatch' class="text-danger">passwords do not match</small>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-success" type="submit">Register</button>
+          </div>
       </div>
+    </div>
+  </div>
+</form>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormhandlerService } from './formhandler.service';
 
 @Component({
   selector: 'app-fillform',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FillformComponent implements OnInit {
 
-  constructor() { }
-
+  form1:boolean;
+  form2:boolean;
+  form3:boolean;
+  form4:boolean;
+  form5:boolean;
+  constructor(private handler: FormhandlerService) {
+    this.form1 = false;
+    this.form2 = false;
+    this.form3 = false;
+    this.form4 = false;
+    this.form5 = false;
+  }
   ngOnInit(): void {
   }
 

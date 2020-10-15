@@ -1,215 +1,139 @@
-<div class="container card">
-  <div class="card-header">
-    ACADEMIC DETAILS
-  </div>
+<form [formGroup]='form2' (ngSubmit)='submit()'>
+  <div class="container card">
+    <div class="card-header">
+      ACADEMIC DETAILS
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="admissionyear">ADMISSION YEAR</label>
+        <input id="admissionyear" class="form-control" type='text' formControlName='admission_year'>
+      </div>
+      <div class="col">
+        <label for="passingyear">PASSING YEAR</label>
+        <input type='text' class="form-control" id="passingyear" formControlName='passing_year'>
+      </div>
+      <div class="col">
+        <label for="dropyear">DROP YEAR</label>
+        <input class="form-control" id="dropyear" type='text' formControlName='drop_year'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class='col'>
+        <label for='course'>COURSE</label>
+        <select id="course" class="form-control" formControlName='course'>
+          <option disabled selected>select one</option>
+          <option value="BE">BE</option>
+          <option value="BTECH">B.TECH</option>
+          <option value="ME">ME</option>
+          <option value="MCA">MCA</option>
+          <option value="MSC">MSC</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for='branch'>BRANCH</label>
+        <select id='branch' class="form-control" formControlName='branch'>
+          <option selected disabled>select one</option>
+          <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
+          <option value='CE'>CIVIL ENGINEERING</option>
+          <option value='ME'>MECHANICAL ENGINEERING</option>
+          <option value='IT'>INFORMATION TECHNOLOGY</option>
+          <option value="EE">ELECTRICAL ENGINEERING</option>
+          <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
+          <option value='IP'>INDUSTRIAL PRODUCTION</option>
+          <option value='APPLIED-PHYSICS'>APPLIED PHYSICS</option>
+          <option value='APPLIED-MATHEMATICS'>APPLIED MATHEMATICS</option>
+          <option value='APPLIED-CHEMISTRY'>APPLIED CHEMISTRY</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for='currsem'>SEMESTER</label>
+        <select id='currsem' class="form-control" formControlName='curr_sem' (change)='addarray()'>
+          <option selected disabled>select one</option>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+          <option value='6'>6</option>
+          <option value='7'>7</option>
+          <option value='8'>8</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for='entrylevel'>ENTRY LEVEL</label>
+        <select id='entrylevel' class="form-control" formControlName='entry_level'>
+          <option selected disabled>select one</option>
+          <option value='EL0'>LEVEL 0</option>
+          <option value='EL1'>LEVEL 1</option>
+          <option value='EL2'>LEVEL 2</option>
+        </select>
+      </div>
+    </div>
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="admissionyear">ADMISSION YEAR</label>
-      <input id="admissionyear" class="form-control" type='text'>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="totalbacklog">TOTAL BACKLOGS</label>
+        <input id="totalbacklog" class="form-control" type='text' formControlName='total_backlog'>
+      </div>
+      <div class="col">
+        <label for="activebacklog">ACTIVE BACKLOGS</label>
+        <input type='text' class="form-control" id="activebacklog" formControlName='active_backlog'>
+      </div>
+      <div class="col">
+        <label for="failyear">FAIL YEAR(S)</label>
+        <input class="form-control" id="failyear" type='text' formControlName='fail_year'>
+      </div>
+      <div class="col">
+        <label for="failyear">CURRENT CGPA</label>
+        <input class="form-control" id="failyear" type='text' formControlName='curr_cgpa'>
+      </div>
     </div>
-    <div class="col">
-      <label for="passingyear">PASSING YEAR</label>
-      <input type='text' class="form-control" id="passingyear">
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="minortraining">MINOR TRAINING COMPANY</label>
+        <input type='text' class="form-control" id="minortraining" formControlName='minor_training'>
+      </div>
+      <div class="col">
+        <label for="minorproject">MINOR PROJECT</label>
+        <input type='text' class="form-control" id="minorproject" formControlName='minor_project'>
+      </div>
     </div>
-    <div class="col">
-      <label for="dropyear">DROP YEAR</label>
-      <input class="form-control" id="dropyear" type='text'>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="majortraining">MAJOR TRAINING COMPANY</label>
+        <input type='text' class="form-control" id="majortraining" formControlName='major_training'>
+      </div>
+      <div class="col">
+        <label for="majorproject">MAJOR PROJECT</label>
+        <input type='text' class="form-control" id="majorproject" formControlName='major_project'>
+      </div>
     </div>
-  </div>
-  <div class="form-group form-row">
-    <div class='col'>
-      <label for='course'>COURSE</label>
-      <select id="course" class="form-control">
-        <option disabled selected>select one</option>
-        <option value="BE">BE</option>
-        <option value="BTECH">B.TECH</option>
-        <option value="ME">ME</option>
-        <option value="MCA">MCA</option>
-        <option value="MSC">MSC</option>
-      </select>
+    <hr />
+    <div *ngFor='let i of semarray'>
+      <div class="form-group">
+        <label>SEM {{i+1}}</label>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for="'sgpa">SGPA</label>
+          <input type='text' class="form-control" id="sgpa" formControlName='sem{{i+1}}_sgpa'>
+        </div>
+        <div class="col">
+          <label for='ecredit'>EARNED CREDITS</label>
+          <input type='text' class="form-control" id="ecredit" formControlName='sem{{i+1}}_earned_credit'>
+        </div>
+        <div class="col">
+          <label for='tcredit'>TOTAL CREDITS</label>
+          <input type='text' class="form-control" id="tcredit" formControlName='sem{{i+1}}_total_credit'>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <label for='branch'>BRANCH</label>
-      <select id='branch' class="form-control">
-        <option selected disabled>select one</option>
-        <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
-        <option value='CE'>CIVIL ENGINEERING</option>
-        <option value='ME'>MECHANICAL ENGINEERING</option>
-        <option value='IT'>INFORMATION TECHNOLOGY</option>
-        <option value="EE">ELECTRICAL ENGINEERING</option>
-        <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
-        <option value='IP'>INDUSTRIAL PRODUCTION</option>
-        <option value='APPLIED-PHYSICS'>APPLIED PHYSICS</option>
-        <option value='APPLIED-MATHEMATICS'>APPLIED MATHEMATICS</option>
-        <option value='APPLIED-CHEMISTRY'>APPLIED CHEMISTRY</option>
-      </select>
-    </div>
-    <div class="col">
-      <label for='currsem'>SEMESTER</label>
-      <select id='currsem' class="form-control">
-        <option selected disabled>select one</option>
-        <option value='1'>1</option>
-        <option value='2'>2</option>
-        <option value='3'>3</option>
-        <option value='4'>4</option>
-        <option value="5">5</option>
-        <option value='5'>5</option>
-        <option value='6'>7</option>
-        <option value='7'>7</option>
-        <option value='8'>8</option>
-      </select>
-    </div>
-    <div class="col">
-      <label for='entrylevel'>ENTRY LEVEL</label>
-      <select id='entrylevel' class="form-control">
-        <option selected disabled>select one</option>
-        <option value='EL0'>LEVEL 0</option>
-        <option value='EL1'>LEVEL 1</option>
-        <option value='EL2'>LEVEL 2</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="totalbacklog">TOTAL BACKLOGS</label>
-      <input id="totalbacklog" class="form-control" type='text'>
-    </div>
-    <div class="col">
-      <label for="activebacklog">ACTIVE BACKLOGS</label>
-      <input type='text' class="form-control" id="activebacklog">
-    </div>
-    <div class="col">
-      <label for="failyear">FAIL YEAR(S)</label>
-      <input class="form-control" id="failyear" type='text'>
-    </div>
-  </div>
-
-  <hr />
-  <div class="from-group">
-    <label>PREVIOUS ACADEMIC DETAILS(LEVEL 2)</label>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="gdegree">GRADUATION DEGREE</label>
-      <select id="gdegree" class="form-control">
-        <option selected disabled>select one</option>
-        <option value="BE">BE</option>
-        <option value="BTECH">B.TECH</option>
-        <option value="BCA">BCA</option>
-        <option value="BSC">B.SC</option>
-        <option value="BCOM">B.COM</option>
-      </select>
-    </div>
-    <div class="col">
-      <label for='gcourse'>DEGREE COURSE</label>
-      <select id='gcourse' class="form-control">
-        <option selected disabled>select one</option>
-        <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
-        <option value='CE'>CIVIL ENGINEERING</option>
-        <option value='ME'>MECHANICAL ENGINEERING</option>
-        <option value='IT'>INFORMATION TECHNOLOGY</option>
-        <option value="EX">ELECTRICAL AND ELECTRONICS</option>
-        <option value="EE">ELECTRICAL ENGINEERING</option>
-        <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
-        <option value="EIE">ELECTRONICS AND INSTRUMENTATION</option>
-        <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
-        <option value='IP'>INDUSTRIAL PRODUCTION</option>
-        <option value='PHYSICS'>PHYSICS</option>
-        <option value='MATHEMATICS'>MATHEMATICS</option>
-        <option value='CHEMISTRY'>CHEMISTRY</option>
-        <option value="OTHER">OTHER</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="guniversity">UNIVERSITY</label>
-      <input id="guniversity" class="form-control" type='text'>
-    </div>
-    <div class="col">
-      <label for="gpassyear">PASSING YEAR</label>
-      <input id="gpassyear" class="form-control" type='text'>
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="gmarks">MARKS OBTAINED</label>
-      <input id="gmarks" class="form-control" type='text'>
-    </div>
-    <div class="col">
-      <label for="gtotal">TOTAL MARKS</label>
-      <input type='text' class="form-control" id="gtotal">
-    </div>
-    <div class="col">
-      <label for="gaggpercent">AGGREGATE PERCENTAGE</label>
-      <input class="form-control" id="gaggpercent" type='text'>
-    </div>
-    <div class="col">
-      <label for="gavgpercent">AVERAGE PERCENTAGE</label>
-      <input class="form-control" id="gavgpercent" type='text'>
+    <div class="form-group form-row">
+      <div class="col text-center">
+        <button class="btn btn-primary" style="margin: 3px;" type="submit">save and next</button>
+        <button class="btn btn-danger" style="margin: 3px;">reset</button>
+      </div>
     </div>
   </div>
 
-  <div class="from-group">
-    <label>PREVIOUS ACADEMIC DETAILS(LEVEL 1)</label>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for='dcourse'>DEGREE COURSE</label>
-      <select id='dcourse' class="form-control">
-        <option selected disabled>select one</option>
-        <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
-        <option value='CE'>CIVIL ENGINEERING</option>
-        <option value='ME'>MECHANICAL ENGINEERING</option>
-        <option value='IT'>INFORMATION TECHNOLOGY</option>
-        <option value="EX">ELECTRICAL AND ELECTRONICS</option>
-        <option value="EE">ELECTRICAL ENGINEERING</option>
-        <option value="ECE">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
-        <option value="EIE">ELECTRONICS AND INSTRUMENTATION</option>
-        <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
-        <option value='IP'>INDUSTRIAL PRODUCTION</option>
-        <option value='PHYSICS'>PHYSICS</option>
-        <option value='MATHEMATICS'>MATHEMATICS</option>
-        <option value='CHEMISTRY'>CHEMISTRY</option>
-        <option value="OTHER">OTHER</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="duniversity">UNIVERSITY</label>
-      <input id="duniversity" class="form-control" type='text'>
-    </div>
-    <div class="col">
-      <label for="dpassyear">PASSING YEAR</label>
-      <input id="dpassyear" class="form-control" type='text'>
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="dmarks">MARKS OBTAINED</label>
-      <input id="dmarks" class="form-control" type='text'>
-    </div>
-    <div class="col">
-      <label for="dtotal">TOTAL MARKS</label>
-      <input type='text' class="form-control" id="gtotal">
-    </div>
-    <div class="col">
-      <label for="daggpercent">AGGREGATE PERCENTAGE</label>
-      <input class="form-control" id="daggpercent" type='text'>
-    </div>
-    <div class="col">
-      <label for="davgpercent">AVERAGE PERCENTAGE</label>
-      <input class="form-control" id="davgpercent" type='text'>
-    </div>
-  </div>
-  <hr />
-  <div class="form-group form-row">
-    <div class="col text-center">
-      <button class="btn btn-primary" style="margin: 3px;">save and next</button>
-      <button class="btn btn-danger" style="margin: 3px;">reset</button>
-    </div>
-  </div>
-</div>
+</form>

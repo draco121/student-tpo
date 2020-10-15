@@ -1,161 +1,193 @@
-<div class="container card">
-  <div class="card-header">
-    <div>PERSONAL INFORMATION</div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="rollno">ENROLLMENT NUMBER</label>
-      <input type='text' id='rollno' class="form-control" value="0201CS171055" disabled>
-    </div>
-    <div class="col">
-      <label for="batch">BATCH</label>
-      <input type='text' id='batch' class="form-control" value="2021" disabled>
-    </div>
-  </div>
+<form [formGroup]='form1' (ngSubmit)='submit()'>
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="fname">FIRST NAME</label>
-      <input type='text' id='fname' class="form-control">
+  <div class="container card">
+    <div class="card-header">
+      <div>PERSONAL INFORMATION</div>
     </div>
-    <div class="col">
-      <label for="mname">MIDDILE NAME</label>
-      <input type='text' id='mname' class="form-control">
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="rollno">ENROLLMENT NUMBER</label>
+        <input type='text' id='rollno' class="form-control" formControlName='rollno' disabled>
+      </div>
+      <div class="col">
+        <label for="batch">BATCH</label>
+        <input type='text' id='batch' class="form-control" formControlName='batch' disabled>
+      </div>
     </div>
-    <div class="col">
-      <label for="lname">LAST NAME</label>
-      <input type='text' id='lname' class="form-control">
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="fname">FIRST NAME</label>
+        <input type='text' id='fname' class="form-control" formControlName='fname'>
+      </div>
+      <div class="col">
+        <label for="mname">MIDDILE NAME</label>
+        <input type='text' id='mname' class="form-control" formControlName='mname'>
+      </div>
+      <div class="col">
+        <label for="lname">LAST NAME</label>
+        <input type='text' id='lname' class="form-control" formControlName='lname'>
+      </div>
     </div>
-  </div>
 
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="phone">PHONE NUMBER</label>
-      <input type='text' id='phone' class="form-control">
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="phone">CONTACT NUMBER</label>
+        <input type='text' id='phone' class="form-control" formControlName='phone'>
+      </div>
+      <div class="col">
+        <label for="email">EMAIL</label>
+        <input type='text' id='email' class="form-control" formControlName='email'>
+      </div>
     </div>
-    <div class="col">
-      <label for="email">EMAIL</label>
-      <input type='text' id='email' class="form-control">
-    </div>
-  </div>
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="income">ANNUAL FAMILY INCOME</label>
-      <input type='text' id='income' class="form-control">
-      <small>enter income in lacs per annum(LPA)</small>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="altphone">ALTERNATE CONTACT NUMBER</label>
+        <input type='text' id='altphone' class="form-control" formControlName='altphone'>
+      </div>
+      <div class="col">
+        <label for="altemail">ALTERNATE EMAIL</label>
+        <input type='text' id='altemail' class="form-control" formControlName='altemail'>
+      </div>
     </div>
-    <div class="col">
-      <label for="category">CATEGORY</label>
-      <select type='text' id='category' class="form-control">
-        <option selected disabled>select one</option>
-        <option value="GEN">GEN</option>
-        <option value="OBC">OBC</option>
-        <option value="ST">ST</option>
-        <option value="SC">SC</option>
-      </select>
-    </div>
-  </div>
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="dob">DATE OF BIRTH</label>
-      <input type='date' id='dob' class="form-control">
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="income">ANNUAL FAMILY INCOME</label>
+        <input type='text' id='income' class="form-control" formControlName='family_income'>
+        <small>enter income in lacs per annum(LPA)</small>
+      </div>
+      <div class="col">
+        <label for="category">CATEGORY</label>
+        <select type='text' id='category' class="form-control" formControlName='category'>
+          <option selected disabled>select one</option>
+          <option value="GEN">GEN</option>
+          <option value="OBC">OBC</option>
+          <option value="ST">ST</option>
+          <option value="SC">SC</option>
+        </select>
+      </div>
     </div>
-    <div class="col">
-      <label for="gender">GENDER</label>
-      <select id='gender' class="form-control">
-        <option disabled selected>select one</option>
-        <option value="MALE">MALE</option>
-        <option value="FEMALE">FEMALE</option>
-        <option value="PREFER NOT TO SAY">PREFER NOT TO SAY</option>
-      </select>
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="dob">DATE OF BIRTH</label>
+        <input type='date' id='dob' class="form-control" formControlName='dob'>
+      </div>
+      <div class="col">
+        <label for="gender">GENDER</label>
+        <select id='gender' class="form-control" formControlName='gender'>
+          <option disabled selected>select one</option>
+          <option value="MALE">MALE</option>
+          <option value="FEMALE">FEMALE</option>
+          <option value="PREFER NOT TO SAY">PREFER NOT TO SAY</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <hr/>
-  <div class="form-group">
-    <label>PERMANENT ADDRESS</label>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="address1">ADDRESS LINE 1</label>
-      <input type='text' id='address1' class="form-control">
+    <hr />
+    <div class="form-group">
+      <label>PERMANENT ADDRESS</label>
     </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="state">STATE</label>
-      <select id='state' class="form-control" >
-        <option disabled selected>select one</option>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="paddress1">ADDRESS LINE 1</label>
+        <input type='text' id='paddress1' class="form-control" formControlName='p_add_l1'>
+      </div>
+      <div class="col">
+        <label for="address2">ADDRESS LINE 2</label>
+        <input type='text' id='paddress2' class="form-control" formControlName='p_add_l2'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="pcountry">COUNTRY</label>
+        <input type='text' id='pcountry' class="form-control" formControlName='p_country'>
+      </div>
+      <div class="col">
+        <label for="pstate">STATE</label>
+        <select id='pstate' class="form-control" formControlName='p_state'>
+          <option selected>select one</option>
           <option value='{{state}}' *ngFor='let state of states'>{{state}}</option>
-      </select>
+        </select>
+      </div>
+      <div class="col">
+        <label for="pcity">CITY</label>
+        <input type='text' id='pcity' class="form-control" formControlName='p_city'>
+      </div>
+      <div class="col">
+        <label for="pzipcode">ZIP CODE</label>
+        <input type='text' id='pzip' class="form-control" formControlName='p_zip'>
+      </div>
     </div>
-    <div class="col">
-      <label for="city">CITY</label>
-      <input type='text' id='city' class="form-control">
+    <hr />
+    <div class="form-group">
+      <label>CURRENT ADDRESS</label>
+      <span> same as permanent address <input type='checkbox'></span>
     </div>
-    <div class="col">
-      <label for="zipcode">ZIP CODE</label>
-      <input type='text' id='zipcode' class="form-control">
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="caddress1">ADDRESS LINE 1</label>
+        <input type='text' id='address1' class="form-control" formControlName='c_add_l1'>
+      </div>
+      <div class="col">
+        <label for="caddress2">ADDRESS LINE 2</label>
+        <input type='text' id='caddress2' class="form-control" formControlName='c_add_l2'>
+      </div>
     </div>
-  </div>
-  <hr/>
-  <div class="form-group">
-    <label>CURRENT ADDRESS</label>
-    <span>  same as permanent address  <input type='checkbox'></span>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="address1">ADDRESS LINE 1</label>
-      <input type='text' id='address1' class="form-control">
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="state">STATE</label>
-      <select id='state' class="form-control" >
-        <option disabled selected>select one</option>
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="ccountry">COUNTRY</label>
+        <input type='text' id='ccountry' class="form-control" formControlName='c_country'>
+      </div>
+      <div class="col">
+        <label for="cstate">STATE</label>
+        <select id='cstate' class="form-control" formControlName='c_state'>
+          <option selected>select one</option>
           <option value='{{state}}' *ngFor='let state of states'>{{state}}</option>
-      </select>
+        </select>
+      </div>
+      <div class="col">
+        <label for="ccity">CITY</label>
+        <input type='text' id='ccity' class="form-control" formControlName='c_city'>
+      </div>
+      <div class="col">
+        <label for="czip">ZIP CODE</label>
+        <input type='text' id='czip' class="form-control" formControlName='c_zip'>
+      </div>
     </div>
-    <div class="col">
-      <label for="city">CITY</label>
-      <input type='text' id='city' class="form-control">
+
+    <hr />
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="fathername">FATHER'S NAME</label>
+        <input type='text' id='fathername' class="form-control" formControlName='father_name'>
+      </div>
+      <div class="col">
+        <label for="mothername">MOTHER'S NAME</label>
+        <input type='text' id='mothername' class="form-control" formControlName='mother_name'>
+      </div>
     </div>
-    <div class="col">
-      <label for="zipcode">ZIP CODE</label>
-      <input type='text' id='zipcode' class="form-control">
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for="fatherocc">FATHER'S OCCUPATION</label>
+        <input type='text' id='fatherocc' class="form-control" formControlName='father_occ'>
+      </div>
+      <div class="col">
+        <label for="motherocc">MOTHER'S OCCUPATION</label>
+        <input type='text' id='motherocc' class="form-control" formControlName='mother_occ'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col text-center">
+        <button class="btn btn-primary" style="margin: 3px;" type="submit">save and next</button>
+        <button class="btn btn-danger" style="margin: 3px;">reset</button>
+      </div>
     </div>
   </div>
 
-  <hr/>
+</form>
 
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="fathername">FATHER'S NAME</label>
-      <input type='text' id='fathername' class="form-control">
-    </div>
-    <div class="col">
-      <label for="mothername">MOTHER'S NAME</label>
-      <input type='text' id='mothername' class="form-control">
-    </div>
-  </div>
-
-  <div class="form-group form-row">
-    <div class="col">
-      <label for="fatherocc">FATHER'S OCCUPATION</label>
-      <input type='text' id='fathername' class="form-control">
-    </div>
-    <div class="col">
-      <label for="motherocc">MOTHER'S OCCUPATION</label>
-      <input type='text' id='mothername' class="form-control">
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <div class="col text-center">
-      <button class="btn btn-primary" style="margin: 3px;">save and next</button>
-      <button class="btn btn-danger" style="margin: 3px;">reset</button>
-    </div>
-  </div>
-</div>

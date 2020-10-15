@@ -21,12 +21,14 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li class="nav-item" style="text-align: right;" *ngIf='isloggedin'>
+      <li class="nav-item" style="text-align: right;" *ngIf='isloggedin; else login'>
         <button  type='button' class="nav-link btn btn-outline-danger" (click)='logout()'>LOGOUT</button>
       </li>
-      <li class="nav-item" style="text-align: right;" *ngIf='!isloggedin'>
+      <ng-template #login>
+        <li class="nav-item" style="text-align: right;" >
         <button type='button' class="nav-link btn btn-outline-success " routerLink='/login' routerLinkActive='active'>LOGIN</button>
       </li>
+    </ng-template>
     </ul>
   </div>
 </nav>
