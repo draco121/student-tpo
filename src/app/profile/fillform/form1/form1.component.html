@@ -55,8 +55,8 @@
 
     <div class="form-group form-row">
       <div class="col">
-        <label for="income">ANNUAL FAMILY INCOME</label>
-        <input type='text' id='income' class="form-control" formControlName='family_income'>
+        <label for="income" class="required">ANNUAL FAMILY INCOME</label>
+        <input type='text' id='income' class="form-control" formControlName='family_income' [class.is-invalid]='form1.pristine&&form1.touched'>
         <small>enter income in lacs per annum(LPA)</small>
       </div>
       <div class="col">
@@ -82,6 +82,7 @@
           <option disabled selected>select one</option>
           <option value="MALE">MALE</option>
           <option value="FEMALE">FEMALE</option>
+          <option value="OTHER">OTHER</option>
           <option value="PREFER NOT TO SAY">PREFER NOT TO SAY</option>
         </select>
       </div>
@@ -124,7 +125,7 @@
     <hr />
     <div class="form-group">
       <label>CURRENT ADDRESS</label>
-      <span> same as permanent address <input type='checkbox'></span>
+      <span> same as permanent address <input type='checkbox' (change)='copyadd($event)'></span>
     </div>
     <div class="form-group form-row">
       <div class="col">
@@ -184,7 +185,7 @@
     <div class="form-group form-row">
       <div class="col text-center">
         <button class="btn btn-primary" style="margin: 3px;" type="submit">save and next</button>
-        <button class="btn btn-danger" style="margin: 3px;">reset</button>
+        <button class="btn btn-danger" type="reset" style="margin: 3px;">reset</button>
       </div>
     </div>
   </div>

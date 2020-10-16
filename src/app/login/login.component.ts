@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { batch } from '../model.interface';
 
 interface student{
   fname: string;
@@ -22,7 +23,6 @@ interface student{
 export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private afs: AngularFirestore, private router: Router) {
-    this.db = this.afs.collection('student').ref;
     this.local = window.sessionStorage;
    }
 
@@ -30,18 +30,29 @@ export class LoginComponent implements OnInit {
     rollno: ['', Validators.required],
     password: ['', Validators.required]
   })
+  batch='';
   alert: String = null;
   local: Storage
   db :CollectionReference;
+  batches: batch
   ngOnInit(): void {
     let token = this.local.getItem('token');
     if(token){
       this.router.navigate(['profile'])
+    }else{
+        this.db = this.afs.collection('collections').ref;
+        this.db.doc('student-record').get().then(doc=>{
+          if(doc.exists){
+            this.batches = <batch>doc.data()
+          }
+        })
     }
   }
 
   login() {
-    this.db.doc(this.loginform.value.rollno).get().then(doc =>{
+    this.db = this.afs.collection(this.batch).ref;
+    let id = this.loginform.value.rollno.toUpperCase()
+    this.db.doc(id).get().then(doc =>{
       if(doc.exists)
       {
         let data = <student>doc.data();

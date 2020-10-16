@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
+import { batch } from '../model.interface';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -24,11 +25,19 @@ export class ForgotpasswordComponent implements OnInit {
   doc:any
   rollno:string;
   password:string;
+  batch:string;
+  batches: batch;
   constructor(private fb: FormBuilder,
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router ) {
-      this.db = this.afs.collection('student').ref
+        this.db = this.afs.collection('collections').ref
+        this.db.doc('student-record').get().then(doc=>{
+          if(doc.exists)
+          {
+            this.batches = <batch>doc.data();
+          }
+        })
   }
   ngAfterViewInit(): void {
     window['recaptcha'] = new firebase.auth.RecaptchaVerifier('recaptcha',{
@@ -41,7 +50,9 @@ export class ForgotpasswordComponent implements OnInit {
    //firebase.initializeApp(environment.firebaseConfig)
   }
   getdoc(){
-      this.db.doc(this.rollno).get().then(doc =>{
+      this.db = this.afs.collection(this.batch).ref;
+      let id = this.rollno.toUpperCase();
+      this.db.doc(id).get().then(doc =>{
         if(doc.exists)
         {
           this.recordpresent = true;
@@ -55,7 +66,6 @@ export class ForgotpasswordComponent implements OnInit {
   }
 
   sendotp() {
-    let appVerifier = window['recaptcha']
     this.afa.signInWithPhoneNumber('+91'+this.doc.phoneno,window['recaptcha']).
     then((confirmationResult)=>{
       this.isotpsent = true;

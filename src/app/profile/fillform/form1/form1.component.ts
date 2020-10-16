@@ -21,28 +21,29 @@ export class Form1Component implements OnInit {
     mname: [''],
     lname: [''],
     phone: [''],
-    altphone: [''],
+    altphone: ['',Validators.required],
+    gender: ['',Validators.required],
     email: [''],
-    family_income: [''],
-    category:[''],
-    dob: [''],
-    altemail: [''],
-    p_add_l1: [''],
-    p_add_l2: [''],
-    p_state: [''],
-    p_city: [''],
-    p_country: [''],
-    p_zip: [''],
+    family_income: ['',Validators.required],
+    category:['',Validators.required],
+    dob: ['',Validators.required],
+    altemail: ['',Validators.required],
+    p_add_l1: ['',Validators.required],
+    p_add_l2: ['',Validators.required],
+    p_state: ['',Validators.required],
+    p_city: ['',Validators.required],
+    p_country: ['',Validators.required],
+    p_zip: ['',Validators.required],
     c_add_l1: [''],
     c_add_l2: [''],
     c_state: [''],
     c_city: [''],
     c_country: [''],
     c_zip: [''],
-    father_name: [''],
-    father_occ: [''],
-    mother_name: [''],
-    mother_occ: [''],
+    father_name: ['',Validators.required],
+    father_occ: ['',Validators.required],
+    mother_name: ['',Validators.required],
+    mother_occ: ['',Validators.required],
   })
 
   states = ["Andhra Pradesh",
@@ -85,6 +86,7 @@ export class Form1Component implements OnInit {
       this.local = window.localStorage;
       this.session = window.sessionStorage;
     }
+
   ngOnInit(): void {
     this.saved = this.local.getItem('form1');
     this.saved = JSON.parse(this.saved)
@@ -94,6 +96,21 @@ export class Form1Component implements OnInit {
       this.token = JSON.parse(this.session.getItem('token'))
       this.form1.patchValue(this.token)
     }
+  }
+
+  copyadd(event:any){
+     if(event.target.checked){
+      this.form1.patchValue(
+        {
+          c_add_l1: this.form1.value.p_add_l1,
+          c_add_l2: this.form1.value.p_add_l2,
+          c_state: this.form1.value.p_state,
+          c_city: this.form1.value.p_city,
+          c_country: this.form1.value.p_country,
+          c_zip: this.form1.value.p_zip
+        }
+      )
+     }
   }
 
   submit(){

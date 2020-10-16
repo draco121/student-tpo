@@ -9,6 +9,12 @@
       <div style="background-color: grey; height: 1px;"></div>
       <div class="row">
         <div class="col">
+          <div class="form-group">
+            <label>batch</label>
+            <select class="form-control" [(ngModel)]='batch'>
+              <option *ngFor='let b of batches.db' value="{{b}}">{{b}}</option>
+            </select>
+          </div>
           <form [formGroup] ='loginform' (ngSubmit)='login()'>
             <div class="form-group">
               <label for="rollno">Enrollment Number</label>
