@@ -23,7 +23,9 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.local.removeItem('token');
     this.isloggedin = false;
-    this.router.navigate(['/login'])
+    setTimeout(() => {
+      this.router.navigate(['/login'])
+    }, 100);
   }
 
 }

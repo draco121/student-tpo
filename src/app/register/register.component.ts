@@ -23,10 +23,13 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     branch: ['', Validators.required],
     batch: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
     phoneotp: [''],
     password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]],
-    cpassword: ['', [Validators.required,]]
+    cpassword: ['', [Validators.required,]],
+    issubmitted: false,
+    isverified: false,
+    islocked: false
   }, { validators: this.validate.passmatch })
 
   db: CollectionReference;
@@ -105,7 +108,7 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   sendotp() {
-    this.afa.signInWithPhoneNumber(this.register.value.phone, window['recaptcha'])
+    this.afa.signInWithPhoneNumber('+91'+this.register.value.phone, window['recaptcha'])
       .then(confirmationResult => {
         window['confirmationResult'] = confirmationResult;
         this.isphoneotpsent = true;
@@ -155,7 +158,7 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
         this.alert = 'doc already exists'
       } else {
         this.db.doc(id.toUpperCase()).set(this.register.value).then(res => {
-          //window.alert('registration successfull')
+          window.alert('registration successfull')
           console.log('regitration successfull')
         }).catch(err => {
           console.log(err)

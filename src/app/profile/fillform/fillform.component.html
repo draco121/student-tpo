@@ -2,27 +2,22 @@
   <ul class="nav justify-content-center nav-tabs">
     <li class="nav-item">
       <a class="nav-link" routerLink='form1' routerLinkActive='active'>personal details
-        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;"  *ngIf='form1'></i>
+        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;"  *ngIf='f1'></i>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink='form2' routerLinkActive='active'>current academic details
-        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;" *ngIf='form2'></i>
+        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;" *ngIf='f2'></i>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink='form3' routerLinkActive='active'>previous academic performance
-        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;"></i>
+        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;" *ngIf='f3'></i>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink='form4' routerLinkActive='active'>upload documents
-        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="form5" routerLinkActive='active'>review and submit
-        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;"></i>
+      <a class="nav-link" routerLink="form4" routerLinkActive='active'>review and submit
+        <i class="fa fa-check" aria-hidden="true" style="margin: auto auto;color: green;" *ngIf='f4'></i>
       </a>
     </li>
   </ul>

@@ -1,36 +1,35 @@
 <form [formGroup]='form2' (ngSubmit)='submit()'>
   <div class="container card">
     <div class="card-header">
-      ACADEMIC DETAILS
-    </div>
+      <div>ACADEMIC DETAILS</div>
+      <small class="text-danger">fields marked with (*) are required</small>
+   </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="admissionyear">ADMISSION YEAR</label>
+        <label for="admissionyear" class="required">ADMISSION YEAR</label>
         <input id="admissionyear" class="form-control" type='text' formControlName='admission_year'>
       </div>
       <div class="col">
-        <label for="passingyear">PASSING YEAR</label>
+        <label for="passingyear" class="required">PASSING YEAR</label>
         <input type='text' class="form-control" id="passingyear" formControlName='passing_year'>
       </div>
       <div class="col">
-        <label for="dropyear">DROP YEAR</label>
+        <label for="dropyear" class="required">DROP YEAR</label>
         <input class="form-control" id="dropyear" type='text' formControlName='drop_year'>
       </div>
     </div>
     <div class="form-group form-row">
       <div class='col'>
-        <label for='course'>COURSE</label>
+        <label for='course' class="required">COURSE</label>
         <select id="course" class="form-control" formControlName='course'>
           <option disabled selected>select one</option>
-          <option value="BE">BE</option>
           <option value="BTECH">B.TECH</option>
           <option value="ME">ME</option>
           <option value="MCA">MCA</option>
-          <option value="MSC">MSC</option>
         </select>
       </div>
       <div class="col">
-        <label for='branch'>BRANCH</label>
+        <label for='branch' class="required">BRANCH</label>
         <select id='branch' class="form-control" formControlName='branch'>
           <option selected disabled>select one</option>
           <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
@@ -46,7 +45,7 @@
         </select>
       </div>
       <div class="col">
-        <label for='currsem'>SEMESTER</label>
+        <label for='currsem' class="required">SEMESTER</label>
         <select id='currsem' class="form-control" formControlName='curr_sem' (change)='addarray()'>
           <option selected disabled>select one</option>
           <option value='1'>1</option>
@@ -60,51 +59,51 @@
         </select>
       </div>
       <div class="col">
-        <label for='entrylevel'>ENTRY LEVEL</label>
+        <label for='entrylevel' class="required">ENTRY LEVEL</label>
         <select id='entrylevel' class="form-control" formControlName='entry_level'>
           <option selected disabled>select one</option>
-          <option value='EL0'>LEVEL 0</option>
-          <option value='EL1'>LEVEL 1</option>
-          <option value='EL2'>LEVEL 2</option>
+          <option value='0'>JEE MAIN AND COUNCELLING</option>
+          <option value='1'>LATERAL ENTRY</option>
+          <option value='2'>POST GRADUATION</option>
         </select>
       </div>
     </div>
 
     <div class="form-group form-row">
       <div class="col">
-        <label for="totalbacklog">TOTAL BACKLOGS</label>
+        <label for="totalbacklog" class="required">TOTAL BACKLOGS</label>
         <input id="totalbacklog" class="form-control" type='text' formControlName='total_backlog'>
       </div>
       <div class="col">
-        <label for="activebacklog">ACTIVE BACKLOGS</label>
+        <label for="activebacklog" class="required">ACTIVE BACKLOGS</label>
         <input type='text' class="form-control" id="activebacklog" formControlName='active_backlog'>
       </div>
       <div class="col">
-        <label for="failyear">FAIL YEAR(S)</label>
+        <label for="failyear" class="required">FAIL YEAR(S)</label>
         <input class="form-control" id="failyear" type='text' formControlName='fail_year'>
       </div>
       <div class="col">
-        <label for="failyear">CURRENT CGPA</label>
-        <input class="form-control" id="failyear" type='text' formControlName='curr_cgpa'>
+        <label for="currcgpa" class="required">CURRENT CGPA</label>
+        <input class="form-control" id="currcgpa" type='text' formControlName='curr_cgpa'>
       </div>
     </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="minortraining">MINOR TRAINING COMPANY</label>
+        <label for="minortraining" class="required">MINOR TRAINING</label>
         <input type='text' class="form-control" id="minortraining" formControlName='minor_training'>
       </div>
       <div class="col">
-        <label for="minorproject">MINOR PROJECT</label>
+        <label for="minorproject" class="required">MINOR PROJECT</label>
         <input type='text' class="form-control" id="minorproject" formControlName='minor_project'>
       </div>
     </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="majortraining">MAJOR TRAINING COMPANY</label>
+        <label for="majortraining" class="required">MAJOR TRAINING</label>
         <input type='text' class="form-control" id="majortraining" formControlName='major_training'>
       </div>
       <div class="col">
-        <label for="majorproject">MAJOR PROJECT</label>
+        <label for="majorproject" class="required">MAJOR PROJECT</label>
         <input type='text' class="form-control" id="majorproject" formControlName='major_project'>
       </div>
     </div>
@@ -130,8 +129,8 @@
     </div>
     <div class="form-group form-row">
       <div class="col text-center">
-        <button class="btn btn-primary" style="margin: 3px;" type="submit">save and next</button>
-        <button class="btn btn-danger" style="margin: 3px;">reset</button>
+        <button class="btn btn-primary" style="margin: 3px;" type="submit" [disabled]='form2.invalid'>save and next</button>
+        <button class="btn btn-danger" type="reset" style="margin: 3px;">reset</button>
       </div>
     </div>
   </div>

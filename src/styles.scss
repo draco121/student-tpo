@@ -2,3 +2,7 @@
 .upper{
   text-transform: uppercase;
 }
+.required:after {
+  content:" *";
+  color: red;
+}

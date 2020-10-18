@@ -1,28 +1,19 @@
-<div class="card container">
+
+<div class="alert alert-danger container">
+  <h3>please review your form before proceeding to submit</h3>
+</div>
+<div class="container card">
   <div class="card-header">
-    UPLOAD DOCUMENTS
+    <div class="card-title">DECLARATION</div>
   </div>
-
-  <div class="form-group form-row">
-    <label>UPLOAD PHOTO</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFile">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-  </div>
-
-  <div class="form-group form-row">
-    <label>UPLOAD 10TH MARKSHEET</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFile">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-  </div>
-  <div class="form-group form-row">
-    <label>UPLOAD 12TH MARKSHEET</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFile">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
+  <div class="card-body text-center">
+   <p>I hereby declare that all the information provided by me here is inclusive and correct
+     and i take full liability of the correctness of the information, being aware of the fact that
+     any discrepancy if found in the provided information i shall not be able to get benefits of campus
+     placements and other benefits provided by Training and placement Office, Jabalpur engineering college.
+   </p>
+   <span>I agree <input type="checkbox" (change)='isagreed($event)'> </span><br/>
+   <button class="btn btn-success" type="button" [disabled]='isdisabled()' (click)='submit()' style="margin: auto auto;">SUBMIT</button>
   </div>
 </div>
+

@@ -1,7 +1,9 @@
 <form [formGroup]='form3' (ngSubmit)='submit()'>
   <div class="card container">
     <div class="card-header">
-      ACADEMIC PERFORMANCE
+      <div>ACADEMIC PERFORMANCE</div>
+      <small class="text-danger">fields marked with (*) are required</small><br/>
+      <small class="text-danger">please fill out all the necessesary details as per your previous qualifications</small>
     </div>
 
     <div class="form-group">
@@ -9,35 +11,35 @@
     </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="tnboard">BOARD</label>
+        <label for="tnboard" class="required">BOARD</label>
         <input type='text' id="tnboard" class="form-control" formControlName='tn_board'>
       </div>
       <div class="col">
-        <label for="tnpassyear">PASSING YEAR</label>
+        <label for="tnpassyear" class="required">PASSING YEAR</label>
         <input type='text' id="tnpassyear" class="form-control" formControlName='tn_pass_year'>
       </div>
       <div class="col">
-        <label for="tnaggpercent">AGGREGATE PERCENTAGE</label>
+        <label for="tnaggpercent" class="required">AGGREGATE PERCENTAGE</label>
         <input type='text' id="tnaggpercent" class="form-control" formControlName='tn_agg_percent'>
       </div>
     </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="tnschool">SCHOOL NAME</label>
+        <label for="tnschool" class="required">SCHOOL NAME</label>
         <input type='text' class="form-control" id="tnschool" formControlName='tn_school'>
       </div>
     </div>
     <div class="form-group form-row">
       <div class="col">
-        <label for="tncity">CITY</label>
+        <label for="tncity" class="required">CITY</label>
         <input type='text' class="form-control" id="tncity" formControlName='tn_city'>
       </div>
       <div class="col">
-        <label for="tnstate">STATE</label>
+        <label for="tnstate" class="required">STATE</label>
         <input type='text' class="form-control" id="tnstate" formControlName='tn_state'>
       </div>
       <div class="col">
-        <label for="tnzip">ZIP</label>
+        <label for="tnzip" class="required">ZIP</label>
         <input type='text' class="form-control" id="tnzip" formControlName='tn_zip'>
       </div>
     </div>
@@ -182,7 +184,7 @@
       </div>
       <div class="col">
         <label for="dpassyear">PASSING YEAR</label>
-        <input id="dpassyear" class="form-control" type='text' formControlName='d_passyear'>
+        <input id="dpassyear" class="form-control" type='text' formControlName='d_pass_year'>
       </div>
       <div class="col">
         <label for="daggpercent">AGGREGAE PERCENTAGE</label>
@@ -201,6 +203,12 @@
       <div class="col">
         <label for="dzip">ZIP</label>
         <input id="dzip" class="form-control" type='text' formControlName='d_zip'>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <div class="col text-center">
+        <button class="btn btn-primary" style="margin: 3px;" type="submit" [disabled]='form3.invalid'>save and next</button>
+        <button class="btn btn-danger" type="reset" style="margin: 3px;">reset</button>
       </div>
     </div>
   </div>

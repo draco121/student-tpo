@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { stringify } from 'querystring';
+import { student } from 'src/app/model.interface';
 import { FormhandlerService } from '../formhandler.service';
 
 
@@ -34,17 +37,20 @@ export class Form1Component implements OnInit {
     p_city: ['',Validators.required],
     p_country: ['',Validators.required],
     p_zip: ['',Validators.required],
-    c_add_l1: [''],
-    c_add_l2: [''],
-    c_state: [''],
-    c_city: [''],
-    c_country: [''],
-    c_zip: [''],
+    c_add_l1: ['',Validators.required],
+    c_add_l2: ['',Validators.required],
+    c_state: ['',Validators.required],
+    c_city: ['',Validators.required],
+    c_country: ['',Validators.required],
+    c_zip: ['',Validators.required],
     father_name: ['',Validators.required],
     father_occ: ['',Validators.required],
     mother_name: ['',Validators.required],
     mother_occ: ['',Validators.required],
   })
+  get altphone(){
+    return this.form1.get('altphone')
+  }
 
   states = ["Andhra Pradesh",
     "Arunachal Pradesh",
@@ -82,20 +88,19 @@ export class Form1Component implements OnInit {
     "Delhi",
     "Lakshadweep",
     "Puducherry"]
-    constructor(private fb: FormBuilder,private handler:FormhandlerService) {
+    constructor(private fb: FormBuilder,private handler:FormhandlerService,private router:Router) {
       this.local = window.localStorage;
       this.session = window.sessionStorage;
     }
 
   ngOnInit(): void {
-    this.saved = this.local.getItem('form1');
-    this.saved = JSON.parse(this.saved)
-    if(this.saved)
-      this.form1.patchValue(this.saved)
-    else{
-      this.token = JSON.parse(this.session.getItem('token'))
-      this.form1.patchValue(this.token)
+
+    let data = JSON.parse(this.local.getItem('form1'))
+    if(data){
+      this.form1.patchValue(data);
     }
+    this.token = JSON.parse(this.session.getItem('token'))
+    this.form1.patchValue(this.token)
   }
 
   copyadd(event:any){
@@ -113,8 +118,18 @@ export class Form1Component implements OnInit {
      }
   }
 
+  reset(){
+    setTimeout(() => {
+      this.form1.patchValue(this.token)
+    }, 1000);
+  }
+
   submit(){
     this.handler.merge(this.form1.value);
+    this.handler.form1.next(true);
+    let data = JSON.stringify(this.form1.value);
+    this.local.setItem('form1',data);
+    this.router.navigateByUrl('/profile/fillform/form2')
   }
 
 }

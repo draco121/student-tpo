@@ -2,18 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { batch } from '../model.interface';
-
-interface student{
-  fname: string;
-  lname: string;
-  phoneno: string;
-  rollno: string;
-  branch: string;
-  batch: string;
-  email: string;
-  password: string;
-}
+import { batch, student } from '../model.interface';
 
 @Component({
   selector: 'app-login',
@@ -59,6 +48,7 @@ export class LoginComponent implements OnInit {
         if(data.password==this.loginform.value.password)
         {
           this.local.setItem('token',JSON.stringify(data));
+          console.log(data)
           this.router.navigate(['profile'])
         }else{
           this.local.removeItem('token')
