@@ -105,4 +105,10 @@ export interface student{
     issubmitted:boolean;
     islocked:boolean;
     isverified:boolean;
+    photolink: string,
+    resumelink: string,
+    tnlink: string,
+    twlink: string,
+    dlink: string,
+    glink: string,
 }

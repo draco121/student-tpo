@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="card text-center" style="padding: 5px;">
-        <img src="https://www.cesarsway.com/wp-content/uploads/2019/10/AdobeStock_190562703.jpeg"
-        class="img-thumbnail" style="width: 150px;height: 150px;border-radius: 50%; object-fit:contain;margin: auto auto; margin-bottom: 3px;">
+        <img [src]='doc.photolink'
+        class="img-thumbnail" style="width: 150px;height: 150px;border-radius: 50%; object-fit:contain;margin: auto auto; margin-bottom: 3px;" alt="here comes your dp">
           <button class="btn btn-success" style="width: fit-content;position:absolute; transform: translate(200px,100px);border-radius: 50%;"><i class="fa fa-plus" aria-hidden="true" style="margin: auto auto;"></i>
           </button>
         <span>{{doc.fname}} {{doc.lname}}</span>

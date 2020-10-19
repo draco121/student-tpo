@@ -70,7 +70,7 @@ export class UploadsComponent implements OnInit {
   }
 
   uphoto() {
-    let path = this.token.rollno + '/photo.jpg';
+    let path = this.token.batch+'/'+this.token.rollno + '/photo.jpg';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.photo);
 
@@ -96,7 +96,7 @@ export class UploadsComponent implements OnInit {
 
 
   uresume() {
-    let path = this.token.rollno + '/resume.pdf';
+    let path = this.token.batch+'/'+this.token.rollno + '/resume.pdf';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.resume);
 
@@ -121,7 +121,7 @@ export class UploadsComponent implements OnInit {
   }
 
   utn() {
-    let path = this.token.rollno + '/tenth.pdf';
+    let path = this.token.batch+'/'+this.token.rollno + '/tenth.pdf';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.tnmarksheet);
 
@@ -147,7 +147,7 @@ export class UploadsComponent implements OnInit {
 
 
   utw() {
-    let path = this.token.rollno + '/twelth.pdf';
+    let path = this.token.batch+'/'+this.token.rollno + '/twelth.pdf';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.twmarksheet);
 
@@ -173,7 +173,7 @@ export class UploadsComponent implements OnInit {
 
 
   ud() {
-    let path = this.token.rollno + '/diploma.pdf';
+    let path = this.token.batch+'/'+this.token.rollno + '/diploma.pdf';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.d_cert);
 
@@ -199,7 +199,7 @@ export class UploadsComponent implements OnInit {
 
 
   ug() {
-    let path = this.token.rollno + '/degree.pdf';
+    let path = this.token.batch+'/'+this.token.rollno + '/degree.pdf';
     let ref = this.cloud.ref(path);
     let task = this.cloud.upload(path, this.g_cert);
 
@@ -224,7 +224,7 @@ export class UploadsComponent implements OnInit {
   }
 
   submit() {
-    // this.handler.merge(this.uploads.value);
-    //this.handler.submitfinal();
+    this.handler.merge(this.uploads.value);
+    this.handler.submitfinal();
   }
 }

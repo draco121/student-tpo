@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { student } from 'src/app/model.interface';
 
-interface student{
-  fname: string;
-  lname: string;
-  phoneno: string;
-  rollno: string;
-  branch: string;
-  batch: string;
-  email: string;
-}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
