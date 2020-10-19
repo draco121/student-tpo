@@ -61,8 +61,6 @@ export class Form2Component implements OnInit {
    }
 
   ngOnInit(): void {
-    let token = JSON.parse(this.session.getItem('token'));
-    this.form2.patchValue(token);
     let data = JSON.parse(this.local.getItem('form2'));
     if(data)
     {
@@ -72,6 +70,8 @@ export class Form2Component implements OnInit {
     {
       this.addarray()
     }
+    let token = JSON.parse(this.session.getItem('token'));
+    this.form2.patchValue(token);
   }
   addarray(){
     //this.semarray=[]

@@ -25,6 +25,9 @@ import {CustomValidators} from './CustomValidators/CustomValidators';
 import { FormhandlerService } from './profile/fillform/formhandler.service';
 import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { UploadsComponent } from './profile/uploads/uploads.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { AuthGuard } from './Guards/auth.guard';
     Form2Component,
     Form3Component,
     Form4Component,
-    VerifyemailComponent
+    VerifyemailComponent,
+    UploadsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import { AuthGuard } from './Guards/auth.guard';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [CustomValidators,FormhandlerService,AuthGuard],
   bootstrap: [AppComponent]

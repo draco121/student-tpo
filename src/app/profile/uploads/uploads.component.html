@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="card" style="padding: 10px;">
+    <div class="card-header">
+      UPLOAD DOCUMENTS<br/>
+      <small class="text-danger">upload all the necessary documents depending on your mode of admission</small>
+    </div>
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='photo'>upload photo</label>
+        <input type="file" id="photo" class="custom-file" accept=".png,.jpg,.jpeg" (change)='setphoto($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='photo==null' style="margin-top: 32px;" (click)='uphoto()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success " id="photostatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='resume'>upload resume</label>
+        <input type="file" id="resume" class="custom-file" accept=".pdf" (change)='setresume($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='resume==null' style="margin-top: 32px;" (click)='uresume()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success " id="resumestatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='tn'>upload 10th marksheet</label>
+        <input type="file" id="tn" class="custom-file" accept=".pdf" (change)='settn($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='tnmarksheet==null' style="margin-top: 32px;" (click)='utn()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success " id="tnstatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='tw'>upload 12th marksheet</label>
+        <input type="file" id="tw" class="custom-file" accept=".pdf" (change)='settw($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='twmarksheet==null' style="margin-top: 32px;" (click)='utw()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success " id="twstatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='photo'>upload diploma certificate</label>
+        <input type="file" id="photo" class="custom-file" accept=".pdf" (change)='setd($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='d_cert==null' style="margin-top: 32px;" (click)='ud()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success" id="dstatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+    <div class="form-group form-row">
+      <div class="col">
+        <label for='g'>upload graduation certificate</label>
+        <input type="file" id="g" class="custom-file" accept=".pdf" (change)='setg($event)'>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" [disabled]='g_cert==null' style="margin-top: 32px;" (click)='ug()'>upload</button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success " id="gstatus"
+        role="progressbar" style="width: 0%"></div>
+    </div>
+    <hr />
+
+
+  </div>
+</div>

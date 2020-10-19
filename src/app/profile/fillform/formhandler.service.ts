@@ -110,7 +110,13 @@ export class FormhandlerService {
     d_zip:[''],
     islocked:false,
     issubmitted:false,
-    isverified:false
+    isverified:false,
+    photolink: [''],
+    resumelink: [''],
+    tnlink: [''],
+    twlink: [''],
+    dlink: [''],
+    glink: ['']
    });
    form1 = new BehaviorSubject<boolean>(false);
    form1ob = this.form1.asObservable();
@@ -121,7 +127,10 @@ export class FormhandlerService {
    form4 = new BehaviorSubject<boolean>(false);
    form4ob = this.form2.asObservable();
    constructor(private fb:FormBuilder,private afs: AngularFirestore,
-    private router: Router) { }
+    private router: Router) {
+      let data = JSON.parse(window.sessionStorage.getItem('token'))
+      this.main_form.patchValue(data)
+     }
 
 
    submitfinal(){

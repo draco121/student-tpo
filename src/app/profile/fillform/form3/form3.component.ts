@@ -62,6 +62,7 @@ export class Form3Component implements OnInit {
 
   submit(){
         this.handler.merge(this.form3.value);
+        this.handler.form3.next(true)
         this.local.setItem('form3',JSON.stringify(this.form3.value));
         this.router.navigateByUrl('/profile/fillform/form4');
   }

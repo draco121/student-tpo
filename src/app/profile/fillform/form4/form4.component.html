@@ -13,6 +13,7 @@
      placements and other benefits provided by Training and placement Office, Jabalpur engineering college.
    </p>
    <span>I agree <input type="checkbox" (change)='isagreed($event)'> </span><br/>
+   <div class="alert alert-danger" *ngIf='this.alert'>{{this.alert}}</div>
    <button class="btn btn-success" type="button" [disabled]='isdisabled()' (click)='submit()' style="margin: auto auto;">SUBMIT</button>
   </div>
 </div>

@@ -19,16 +19,16 @@ export class FillformComponent implements OnInit {
   f3:boolean;
   f4:boolean;
   ngOnInit(): void {
-    this.handler.form1ob.subscribe(value=>{
+    this.handler.form1.subscribe(value=>{
       this.f1 = value;
     });
-    this.handler.form2ob.subscribe(value=>{
+    this.handler.form2.subscribe(value=>{
       this.f2 = value;
     })
-    this.handler.form3ob.subscribe(value=>{
+    this.handler.form3.subscribe(value=>{
       this.f3 = value;
     })
-    this.handler.form4ob.subscribe(value=>{
+    this.handler.form4.subscribe(value=>{
       this.f4 = value;
     })
   }

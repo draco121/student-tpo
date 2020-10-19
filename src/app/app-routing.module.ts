@@ -14,6 +14,7 @@ import { Form3Component } from './profile/fillform/form3/form3.component';
 import { Form4Component } from './profile/fillform/form4/form4.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateformComponent } from './profile/updateform/updateform.component';
+import { UploadsComponent } from './profile/uploads/uploads.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 
@@ -55,6 +56,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'uploads',
+        component: UploadsComponent
       },
       {
         path: 'fillform',

@@ -10,12 +10,16 @@ export class Form4Component implements OnInit {
 
   constructor(public handler: FormhandlerService) { }
   agree = false;
+  alert:string = null;
   ngOnInit(): void {
   }
 
   isdisabled():boolean{
     if(this.handler.main_form.invalid)
-    return true;
+    {
+      this.alert = 'some reqired information is missing check the previous forms'
+      return true;
+    }
     else{
       if(!this.agree)
       return true;
@@ -31,6 +35,7 @@ export class Form4Component implements OnInit {
 
   submit(){
     this.handler.submitfinal()
+    this.handler.form4.next(true)
   }
 
 }
