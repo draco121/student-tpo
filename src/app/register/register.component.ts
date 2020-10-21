@@ -183,7 +183,7 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     try {
       const actionCodeSettings = {
         // Your redirect URL
-        url: 'http://localhost:4200/verifyemail',
+        url: 'https://test-4bf63.web.app/verifyemail',
         handleCodeInApp: true,
       };
       this.afa
