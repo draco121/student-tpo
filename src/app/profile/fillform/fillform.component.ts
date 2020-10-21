@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { FormhandlerService } from './formhandler.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FormhandlerService } from './formhandler.service';
 })
 export class FillformComponent implements OnInit {
 
-  constructor(private handler: FormhandlerService) {
+  constructor(private handler: FormhandlerService,private router:Router) {
     this.f1 = false;
     this.f2 = false;
     this.f3 = false;
@@ -31,6 +32,23 @@ export class FillformComponent implements OnInit {
     this.handler.form4.subscribe(value=>{
       this.f4 = value;
     })
+  }
+  isinstructionaccepted = false;
+  isproceeded = false;
+
+  ischecked(event:any)
+  {
+      if(event.target.checked)
+      {
+        this.isinstructionaccepted = true;
+      }else{
+        this.isinstructionaccepted = false;
+      }
+  }
+
+  proceed(){
+     this.isproceeded = true;
+     this.router.navigateByUrl('/profile/fillform/form1')
   }
 
 }

@@ -26,6 +26,7 @@ export class UploadsComponent implements OnInit {
     twlink: [''],
     dlink: [''],
     glink: [''],
+    isuploadformsubmitted:false,
   });
   ngOnInit(): void {}
 
@@ -77,6 +78,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('photostatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -103,6 +109,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('resumestatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -128,6 +139,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('tnstatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -154,6 +170,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('twstatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -180,6 +201,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('dstatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -206,6 +232,11 @@ export class UploadsComponent implements OnInit {
     task.percentageChanges().subscribe((obs) => {
       let progress = document.getElementById('gstatus');
       progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
     });
     task
       .snapshotChanges()
@@ -224,6 +255,9 @@ export class UploadsComponent implements OnInit {
   }
 
   submit() {
+    this.uploads.patchValue({
+      isuploadformsubmitted:true
+    })
     this.handler.merge(this.uploads.value);
     this.handler.submitfinal();
   }

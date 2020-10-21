@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { CocComponent } from './coc/coc.component';
-import { HelpComponent } from './help/help.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './profile/dashboard/dashboard.component';
 import { FillformComponent } from './profile/fillform/fillform.component';
@@ -28,6 +26,10 @@ import { AuthGuard } from './Guards/auth.guard';
 import { UploadsComponent } from './profile/uploads/uploads.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdmincontrolService } from './controller/admincontrol.service';
+import { AlertComponent } from './profile/alert/alert.component';
+import { MainformGuard } from './Guards/mainform.guard';
+import { UpdatesGuard } from './Guards/updates.guard';
+import { ProheaderComponent } from './profile/proheader/proheader.component';
 
 
 @NgModule({
@@ -36,8 +38,6 @@ import { AdmincontrolService } from './controller/admincontrol.service';
     LoginComponent,
     RegisterComponent,
     ForgotpasswordComponent,
-    CocComponent,
-    HelpComponent,
     ProfileComponent,
     DashboardComponent,
     FillformComponent,
@@ -48,7 +48,9 @@ import { AdmincontrolService } from './controller/admincontrol.service';
     Form3Component,
     Form4Component,
     VerifyemailComponent,
-    UploadsComponent
+    UploadsComponent,
+    AlertComponent,
+    ProheaderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { AdmincontrolService } from './controller/admincontrol.service';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [CustomValidators,FormhandlerService,AuthGuard,AdmincontrolService],
+  providers: [CustomValidators,FormhandlerService,AuthGuard,AdmincontrolService,MainformGuard,UpdatesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

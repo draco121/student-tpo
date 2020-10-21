@@ -4,8 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export interface control{
   collectionname: string;
   isactive:boolean;
-  isupdatable:boolean;
-  isuploadable:boolean;
+  master_lock:boolean;
+  secondary_lock:boolean;
 }
 
 @Injectable({
@@ -41,6 +41,30 @@ export class AdmincontrolService {
             }
           })
     })
-    return activecollections
+    return activecollections;
   }
+
+
+ async getmasterlock(collection:string):Promise<boolean>
+  { let lock:boolean;
+    await this.getallcontrollers().then(a=>{
+      a.forEach(control=>{
+        if(control.collectionname === collection)
+        lock = control.master_lock
+      })
+    })
+    return lock;
+  }
+
+  async getsecondarylock(collection:string):Promise<boolean>
+  { let lock: boolean;
+    await this.getallcontrollers().then(a=>{
+      a.forEach(control=>{
+        if(control.collectionname === collection)
+        lock = control.secondary_lock
+      })
+    })
+    return lock;
+  }
+
 }

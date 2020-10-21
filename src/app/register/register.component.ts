@@ -28,9 +28,12 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     phoneotp: [''],
     password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]],
     cpassword: ['', [Validators.required,]],
-    issubmitted: false,
-    isverified: false,
-    islocked: false
+    isblacklisted:false,
+    isverified:false,
+    ismainformsubmitted:false,
+    isuploadformsubmitted:false,
+    master_lock:false,
+    secondary_lock:false
   }, { validators: this.validate.passmatch })
 
   db: CollectionReference;

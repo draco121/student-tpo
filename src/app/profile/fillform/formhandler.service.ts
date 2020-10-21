@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { windowToggle } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -108,9 +109,12 @@ export class FormhandlerService {
     d_city:[''],
     d_state:[''],
     d_zip:[''],
-    islocked:false,
-    issubmitted:false,
+    isblacklisted:false,
     isverified:false,
+    master_lock:false,
+    secondary_lock:false,
+    ismainformsubmitted:false,
+    isuploadformsubmitted:false,
     photolink: [''],
     resumelink: [''],
     tnlink: [''],
@@ -119,13 +123,9 @@ export class FormhandlerService {
     glink: ['']
    });
    form1 = new BehaviorSubject<boolean>(false);
-   form1ob = this.form1.asObservable();
    form2 = new BehaviorSubject<boolean>(false);
-   form2ob = this.form2.asObservable();
    form3 = new BehaviorSubject<boolean>(false);
-   form3ob = this.form2.asObservable();
    form4 = new BehaviorSubject<boolean>(false);
-   form4ob = this.form2.asObservable();
    constructor(private fb:FormBuilder,private afs: AngularFirestore,
     private router: Router) {
       let data = JSON.parse(window.sessionStorage.getItem('token'))
@@ -134,18 +134,28 @@ export class FormhandlerService {
 
 
    submitfinal(){
-      this.main_form.patchValue({islocked: true,
-      issubmitted:true});
+     if(this.main_form.value.ismainformsubmitted&&this.main_form.value.isuploadformsubmitted)
+     {
+       this.main_form.patchValue({
+         master_lock:true,
+         secondary_lock:true
+       })
+     }
       let db = this.afs.collection(this.main_form.value.batch).ref;
       let id:string = this.main_form.value.rollno
       db.doc(id.toUpperCase()).update(this.main_form.value).then(res=>{
         window.alert('form submitted successfully')
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/profile/alert');
       }).catch(err=>{
+          this.main_form.patchValue({
+            master_lock:false,
+            secondary_lock:false
+          })
          window.alert('error occured:'+err);
-         this.main_form.patchValue({islocked:false});
       })
    }
+
+
    merge(data:any)
    {
      this.main_form.patchValue(data)

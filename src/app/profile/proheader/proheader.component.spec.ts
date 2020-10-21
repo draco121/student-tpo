@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CocComponent } from './coc.component';
+import { ProheaderComponent } from './proheader.component';
 
-describe('CocComponent', () => {
-  let component: CocComponent;
-  let fixture: ComponentFixture<CocComponent>;
+describe('ProheaderComponent', () => {
+  let component: ProheaderComponent;
+  let fixture: ComponentFixture<ProheaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CocComponent ]
+      declarations: [ ProheaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CocComponent);
+    fixture = TestBed.createComponent(ProheaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

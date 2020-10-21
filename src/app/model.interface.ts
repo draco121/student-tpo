@@ -102,13 +102,16 @@ export interface student{
     d_city:string;
     d_state:string;
     d_zip:string;
-    issubmitted:boolean;
-    islocked:boolean;
+    master_lock:boolean;
+    secondary_lock:boolean;
     isverified:boolean;
+    ismainformsubmitted:boolean;
+    isuploadformsubmitted:boolean;
     photolink: string,
     resumelink: string,
     tnlink: string,
     twlink: string,
     dlink: string,
-    glink: string,
+    glink: string
+
 }

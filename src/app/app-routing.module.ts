@@ -1,11 +1,12 @@
 import { registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CocComponent } from './coc/coc.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { AuthGuard } from './Guards/auth.guard';
-import { HelpComponent } from './help/help.component';
+import { MainformGuard } from './Guards/mainform.guard';
+import { UpdatesGuard } from './Guards/updates.guard';
 import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './profile/alert/alert.component';
 import { DashboardComponent } from './profile/dashboard/dashboard.component';
 import { FillformComponent } from './profile/fillform/fillform.component';
 import { Form1Component } from './profile/fillform/form1/form1.component';
@@ -36,14 +37,6 @@ const routes: Routes = [
     component: ForgotpasswordComponent
   },
   {
-    path: 'codeofconduct',
-    component: CocComponent
-  },
-  {
-    path: 'help',
-    component: HelpComponent
-  },
-  {
     path: 'profile',
     component: ProfileComponent,
     canActivateChild:[AuthGuard],
@@ -58,12 +51,19 @@ const routes: Routes = [
         component: DashboardComponent
       },
       {
+        path: 'alert',
+        component: AlertComponent
+      },
+      {
         path: 'uploads',
-        component: UploadsComponent
+        component: UploadsComponent,
+        canActivate:[MainformGuard]
       },
       {
         path: 'fillform',
         component: FillformComponent,
+        canActivate:[MainformGuard],
+        canActivateChild:[MainformGuard],
         children:[
           {
             path:'form1',
@@ -90,7 +90,8 @@ const routes: Routes = [
       },
       {
         path: 'updateform',
-        component: UpdateformComponent
+        component: UpdateformComponent,
+        canActivate:[UpdatesGuard]
       },
       {
         path: '**',

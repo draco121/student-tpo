@@ -4,6 +4,20 @@
       <div class="card-header">
         UPDATE INFORMATION
       </div>
+
+      <div class="form-group form-row">
+        <div class="col">
+          <label for='photo'>upload photo</label>
+          <input type="file" id="photo" class="custom-file" accept=".png,.jpg,.jpeg" (change)='setphoto($event)'>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" type="button" [disabled]='photo==null' style="margin-top: 32px;" (click)='uphoto()'>upload</button>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped" id="photostatus"
+          role="progressbar" style="width: 0%"></div>
+      </div>
       <div class="form-group form-row">
         <div class="col">
           <label for="phone">PHONE</label>

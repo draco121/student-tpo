@@ -8,27 +8,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink='/register' routerLinkActive='active' *ngIf='!isloggedin'>REGISTER</a>
+        <a class="nav-link" routerLink='/register' routerLinkActive='active'>REGISTER</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink='/updates' routerLinkActive='active'>UPDATES</a>
+      <li class="nav-item" style="text-align: right;">
+        <a t class="nav-link" routerLink='/login' routerLinkActive='active'>LOGIN</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink='/help' routerLinkActive='active'>HELP</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink='/codeofconduct' routerLinkActive='active'>CODE OF CONDUCT</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item" style="text-align: right;" *ngIf='isloggedin; else login'>
-        <button  type='button' class="nav-link btn btn-outline-danger" (click)='logout()'>LOGOUT</button>
-      </li>
-      <ng-template #login>
-        <li class="nav-item" style="text-align: right;" >
-        <button type='button' class="nav-link btn btn-outline-success " routerLink='/login' routerLinkActive='active'>LOGIN</button>
-      </li>
-    </ng-template>
     </ul>
   </div>
 </nav>

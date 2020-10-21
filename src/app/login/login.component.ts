@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit {
   db :CollectionReference;
   activecollections:string[];
   ngOnInit(): void {
-
+      let token = this.local.getItem('token')
+      if(token!=null)
+      {
+        this.router.navigate(['/profile'])
+      }
   }
 
   login() {

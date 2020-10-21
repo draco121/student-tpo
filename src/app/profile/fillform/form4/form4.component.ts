@@ -10,7 +10,7 @@ export class Form4Component implements OnInit {
 
   constructor(public handler: FormhandlerService) { }
   agree = false;
-  alert:string = null;
+  alert:string = '';
   ngOnInit(): void {
   }
 
@@ -34,6 +34,7 @@ export class Form4Component implements OnInit {
   }
 
   submit(){
+    this.handler.merge({ismainformsubmitted:true})
     this.handler.submitfinal()
     this.handler.form4.next(true)
   }

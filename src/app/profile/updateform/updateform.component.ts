@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder } from '@angular/forms';
 import { storage } from 'firebase';
+import { finalize } from 'rxjs/operators';
 import { student } from 'src/app/model.interface';
 import { FormhandlerService } from '../fillform/formhandler.service';
 
@@ -26,6 +28,7 @@ export class UpdateformComponent implements OnInit {
     fail_year:[''],
     curr_sem:[''],
     curr_cgpa:[''],
+    photolink:[''],
     sem1_sgpa:[0],
     sem1_total_credit:[0],
     sem1_earned_credit:[0],
@@ -51,12 +54,50 @@ export class UpdateformComponent implements OnInit {
     sem8_total_credit:[0],
     sem8_earned_credit:[0]
   })
-  constructor(private fb: FormBuilder,private handler:FormhandlerService) {
+  constructor(private fb: FormBuilder,private handler:FormhandlerService,private cloud: AngularFireStorage) {
     this.session = window.sessionStorage;
     this.token = JSON.parse(this.session.getItem('token'))
     this.updateform.patchValue(this.token);
     this.addarray()
    }
+
+   photo: File;
+   setphoto(event: any) {
+    if (event.target.files.length > 0) {
+      this.photo = event.target.files[0];
+    }
+  }
+
+
+  uphoto() {
+    let path = this.token.batch+'/'+this.token.rollno + '/photo.jpg';
+    let ref = this.cloud.ref(path);
+    let task = this.cloud.upload(path, this.photo);
+
+    task.percentageChanges().subscribe((obs) => {
+      let progress = document.getElementById('photostatus');
+      progress.style.width = obs.toString() + '%';
+      if(obs ===100)
+      progress.style.backgroundColor = 'green';
+      else{
+        progress.style.backgroundColor = 'brown';
+      }
+    });
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          let downurl = ref.getDownloadURL();
+               downurl.subscribe((url) => {
+            this.updateform.patchValue({
+              photolink: url.toString(),
+            });
+          });
+        })
+      )
+      .subscribe();
+  }
+
 
    addarray(){
     //this.semarray=[]

@@ -1,4 +1,4 @@
-<div class="container stick-top">
+<div class="container stick-top" *ngIf='isproceeded'>
   <ul class="nav justify-content-center nav-tabs">
     <li class="nav-item">
       <a class="nav-link" routerLink='form1' routerLinkActive='active'>personal details
@@ -23,5 +23,32 @@
   </ul>
 </div>
 <hr/>
+<div class="container alert alert-success" *ngIf='!isproceeded'>
+  <div class="card-title text-center"><h2>INSTRUCTIONS</h2></div>
+  <ul>
+    <li>
+      <p>PLEASE FILL THIS FORM VERY CAREFULLY AND AVOID DOING SILLY MISTAKES</p>
+    </li>
+    <li>
+      <p class="text-danger">THE FORM WILL BE ALLOWED TO FILL ONLY ONCE, ONCE THE FORM IS SUBMITTED YOU WILL NOT BE ABLE
+        TO CHANGE OR EDIT ANY DETAIL
+      </p>
+    </li>
+    <li>
+      <p>PLEASE CHECK FOR THE AUTHENTICITY OF THE DETAILS,THE CANDIDATE WILL BE RESPONSIBLE FOR ANY WRONG INFORMATION</p>
+    </li>
+    <li>
+      <p>FILL ALL THE DETAILS CORRESPONDING TO YOUR QUALIFICATIONS e.g for lateral entry students it is compulsory to fill diploma details
+      </p>
+    </li>
+    <li>
+      <p>IN CASE OF ANY TECHNICAL PROBLEM PLEASE CONTACT TO TRAINING AND PLACEMENT OFFICE</p>
+    </li>
+  </ul>
+  <div class="alert alert-primary text-center">
+    <p>i have read the instructions <span><input type="checkbox" (change)='ischecked($event)'></span></p>
+    <button class="btn btn-primary"[disabled]='!isinstructionaccepted' (click)='proceed()'>PROCEED</button>
+  </div>
+</div>
 <router-outlet></router-outlet>
 
