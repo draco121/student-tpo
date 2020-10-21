@@ -30,6 +30,8 @@ import { AlertComponent } from './profile/alert/alert.component';
 import { MainformGuard } from './Guards/mainform.guard';
 import { UpdatesGuard } from './Guards/updates.guard';
 import { ProheaderComponent } from './profile/proheader/proheader.component';
+import { ErrorlogService } from './errorlog.service';
+import { ErrorsComponent } from './errors/errors.component';
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import { ProheaderComponent } from './profile/proheader/proheader.component';
     VerifyemailComponent,
     UploadsComponent,
     AlertComponent,
-    ProheaderComponent
+    ProheaderComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,13 @@ import { ProheaderComponent } from './profile/proheader/proheader.component';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [CustomValidators,FormhandlerService,AuthGuard,AdmincontrolService,MainformGuard,UpdatesGuard],
+  providers: [CustomValidators,
+              FormhandlerService,
+              AuthGuard,
+              AdmincontrolService,
+              MainformGuard,
+              UpdatesGuard,
+              ErrorlogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

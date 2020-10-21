@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { finalize, take } from 'rxjs/operators';
+import { ErrorlogService } from 'src/app/errorlog.service';
 import { student } from 'src/app/model.interface';
 import { FormhandlerService } from '../fillform/formhandler.service';
 
@@ -15,7 +16,8 @@ export class UploadsComponent implements OnInit {
   constructor(
     private cloud: AngularFireStorage,
     private fb: FormBuilder,
-    private handler: FormhandlerService
+    private handler: FormhandlerService,
+    private er: ErrorlogService
   ) {
     this.token = <student>JSON.parse(window.sessionStorage.getItem('token'));
   }
@@ -26,7 +28,7 @@ export class UploadsComponent implements OnInit {
     twlink: [''],
     dlink: [''],
     glink: [''],
-    isuploadformsubmitted:false,
+    isuploadformsubmitted: false,
   });
   ngOnInit(): void {}
 
@@ -71,194 +73,212 @@ export class UploadsComponent implements OnInit {
   }
 
   uphoto() {
-    let path = this.token.batch+'/'+this.token.rollno + '/photo.jpg';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.photo);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/photo.jpg';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.photo);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('photostatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              photolink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('photostatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                photolink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
 
-
   uresume() {
-    let path = this.token.batch+'/'+this.token.rollno + '/resume.pdf';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.resume);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/resume.pdf';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.resume);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('resumestatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              resumelink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('resumestatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                resumelink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
 
   utn() {
-    let path = this.token.batch+'/'+this.token.rollno + '/tenth.pdf';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.tnmarksheet);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/tenth.pdf';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.tnmarksheet);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('tnstatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              tnlink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('tnstatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                tnlink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
-
 
   utw() {
-    let path = this.token.batch+'/'+this.token.rollno + '/twelth.pdf';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.twmarksheet);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/twelth.pdf';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.twmarksheet);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('twstatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              twlink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('twstatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                twlink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
-
 
   ud() {
-    let path = this.token.batch+'/'+this.token.rollno + '/diploma.pdf';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.d_cert);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/diploma.pdf';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.d_cert);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('dstatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              dlink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('dstatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                dlink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
 
-
   ug() {
-    let path = this.token.batch+'/'+this.token.rollno + '/degree.pdf';
-    let ref = this.cloud.ref(path);
-    let task = this.cloud.upload(path, this.g_cert);
+    try {
+      let path = this.token.batch + '/' + this.token.rollno + '/degree.pdf';
+      let ref = this.cloud.ref(path);
+      let task = this.cloud.upload(path, this.g_cert);
 
-    task.percentageChanges().subscribe((obs) => {
-      let progress = document.getElementById('gstatus');
-      progress.style.width = obs.toString() + '%';
-      if(obs ===100)
-      progress.style.backgroundColor = 'green';
-      else{
-        progress.style.backgroundColor = 'brown';
-      }
-    });
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downurl = ref.getDownloadURL();
-          this.downurl.subscribe((url) => {
-            this.url = url.toString();
-            this.uploads.patchValue({
-              glink: url,
+      task.percentageChanges().subscribe((obs) => {
+        let progress = document.getElementById('gstatus');
+        progress.style.width = obs.toString() + '%';
+        if (obs === 100) progress.style.backgroundColor = 'green';
+        else {
+          progress.style.backgroundColor = 'brown';
+        }
+      });
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downurl = ref.getDownloadURL();
+            this.downurl.subscribe((url) => {
+              this.url = url.toString();
+              this.uploads.patchValue({
+                glink: url,
+              });
             });
-          });
-        })
-      )
-      .subscribe();
+          })
+        )
+        .subscribe();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
 
   submit() {
-    this.uploads.patchValue({
-      isuploadformsubmitted:true
-    })
-    this.handler.merge(this.uploads.value);
-    this.handler.submitfinal();
+    try {
+      this.uploads.patchValue({
+        isuploadformsubmitted: true,
+      });
+      this.handler.merge(this.uploads.value);
+      this.handler.submitfinal();
+    } catch (err) {
+      this.er.log(err);
+    }
   }
 }

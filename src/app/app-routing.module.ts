@@ -1,6 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ErrorsComponent } from './errors/errors.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { MainformGuard } from './Guards/mainform.guard';
@@ -98,6 +99,10 @@ const routes: Routes = [
         redirectTo: 'dashboard'
       }
     ]
+  },
+  {
+      path: 'errors',
+      component:ErrorsComponent
   },
   {
     path: '',
