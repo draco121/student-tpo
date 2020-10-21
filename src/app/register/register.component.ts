@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
+import { AdmincontrolService } from '../controller/admincontrol.service';
 import { CustomValidators } from '../CustomValidators/CustomValidators';
 import { batch } from '../model.interface';
 
@@ -40,12 +41,15 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
   local = window.localStorage;
   alert = '';
   isforminvalid = true;
-  batches: batch;
-
+  activecollectins:string[]
   constructor(private fb: FormBuilder,
     private afs: AngularFirestore,
     private validate: CustomValidators,
-    private afa: AngularFireAuth) {
+    private afa: AngularFireAuth,
+    private ac:AdmincontrolService) {
+    this.ac.getactivecollections().then(a=>{
+      this.activecollectins = a;
+    })
 
   }
 
@@ -96,15 +100,7 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   ngOnInit() {
-    this.db = this.afs.collection('collections').ref;
-    this.db.doc('student-record').get().then(doc => {
-      if (doc.exists) {
-        this.batches = <batch>doc.data();
-        console.log(this.batches)
-      }
-    }).catch(err => {
-      console.log(err)
-    })
+
   }
 
   sendotp() {

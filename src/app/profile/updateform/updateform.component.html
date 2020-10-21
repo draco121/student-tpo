@@ -1,1 +1,94 @@
-<p>updateform works!</p>
+<form [formGroup]='updateform' (ngSubmit)='submit()'>
+  <div class="container" style="padding:10px;">
+    <div class="card" style="padding: 10px;">
+      <div class="card-header">
+        UPDATE INFORMATION
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for="phone">PHONE</label>
+          <input id="phone" type="text" class="form-control" formControlName='phone'>
+        </div>
+        <div class="col">
+          <label for="emial">EMAIL</label>
+          <input id="email" type="text" class="form-control" formControlName='email'>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for="majortraining">MAJOR TRAINING</label>
+          <input type='text' class="form-control" id="majortraining" formControlName='major_training'>
+        </div>
+        <div class="col">
+          <label for="majorproject">MAJOR PROJECT</label>
+          <input type='text' class="form-control" id="majorproject" formControlName='major_project'>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for="minortraining">MINOR TRAINING</label>
+          <input type='text' class="form-control" id="minortraining" formControlName='minor_training'>
+        </div>
+        <div class="col">
+          <label for="minorproject">MINOR PROJECT</label>
+          <input type='text' class="form-control" id="minorproject" formControlName='minor_project'>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for="totalbacklog">TOTAL BACKLOGS</label>
+          <input id="totalbacklog" class="form-control" type='text' formControlName='total_backlog'>
+        </div>
+        <div class="col">
+          <label for="activebacklog">ACTIVE BACKLOGS</label>
+          <input type='text' class="form-control" id="activebacklog" formControlName='active_backlog'>
+        </div>
+        <div class="col">
+          <label for="failyear">FAIL YEAR(S)</label>
+          <input class="form-control" id="failyear" type='text' formControlName='fail_year'>
+        </div>
+        <div class="col">
+          <label for="currcgpa">CURRENT CGPA</label>
+          <input class="form-control" id="currcgpa" type='text' formControlName='curr_cgpa'>
+        </div>
+      </div>
+      <div class="form-group form-row">
+        <div class="col">
+          <label for='currsem' class="required">SEMESTER</label>
+          <select id='currsem' class="form-control" formControlName='curr_sem' (change)='addarray()'>
+            <option selected disabled>select one</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+          </select>
+        </div>
+      </div>
+      <hr />
+      <div *ngFor='let i of semarray'>
+        <div class="form-group">
+          <label>SEM {{i+1}}</label>
+        </div>
+        <div class="form-group form-row">
+          <div class="col">
+            <label for="'sgpa">SGPA</label>
+            <input type='text' class="form-control" id="sgpa" formControlName='sem{{i+1}}_sgpa'>
+          </div>
+          <div class="col">
+            <label for='ecredit'>EARNED CREDITS</label>
+            <input type='text' class="form-control" id="ecredit" formControlName='sem{{i+1}}_earned_credit'>
+          </div>
+          <div class="col">
+            <label for='tcredit'>TOTAL CREDITS</label>
+            <input type='text' class="form-control" id="tcredit" formControlName='sem{{i+1}}_total_credit'>
+          </div>
+        </div>
+      </div>
+      <button class='btn btn-success' type="submit">submit</button>
+    </div>
+  </div>
+</form>

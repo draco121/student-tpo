@@ -12,7 +12,7 @@
           <div class="form-group">
             <label>batch</label>
             <select class="form-control" [(ngModel)]='batch'>
-              <option *ngFor='let b of batches.db' value="{{b}}">{{b}}</option>
+              <option *ngFor='let batch of activecollections' value="{{batch}}">{{batch}}</option>
             </select>
           </div>
           <form [formGroup] ='loginform' (ngSubmit)='login()'>

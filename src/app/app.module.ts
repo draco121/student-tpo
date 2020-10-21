@@ -27,6 +27,7 @@ import { VerifyemailComponent } from './verifyemail/verifyemail.component';
 import { AuthGuard } from './Guards/auth.guard';
 import { UploadsComponent } from './profile/uploads/uploads.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AdmincontrolService } from './controller/admincontrol.service';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [CustomValidators,FormhandlerService,AuthGuard],
+  providers: [CustomValidators,FormhandlerService,AuthGuard,AdmincontrolService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

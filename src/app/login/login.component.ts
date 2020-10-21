@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdmincontrolService } from '../controller/admincontrol.service';
 import { batch, student } from '../model.interface';
 
 @Component({
@@ -11,8 +12,12 @@ import { batch, student } from '../model.interface';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private afs: AngularFirestore, private router: Router) {
+  constructor(private fb: FormBuilder, private afs: AngularFirestore, private router: Router,
+    private ac: AdmincontrolService) {
     this.local = window.sessionStorage;
+    this.ac.getactivecollections().then(collections=>{
+      this.activecollections = collections
+    })
    }
 
   loginform = this.fb.group({
@@ -23,19 +28,9 @@ export class LoginComponent implements OnInit {
   alert: String = null;
   local: Storage
   db :CollectionReference;
-  batches: batch
+  activecollections:string[];
   ngOnInit(): void {
-    let token = this.local.getItem('token');
-    if(token){
-      this.router.navigate(['profile'])
-    }else{
-        this.db = this.afs.collection('collections').ref;
-        this.db.doc('student-record').get().then(doc=>{
-          if(doc.exists){
-            this.batches = <batch>doc.data()
-          }
-        })
-    }
+
   }
 
   login() {

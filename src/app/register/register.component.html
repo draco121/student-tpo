@@ -24,7 +24,7 @@
           <div class="form-group">
             <label for='batch'>Batch</label>
             <select id='batch' class="form-control" placeholder="Passing Year" formControlName='batch' [class.is-invalid]='batch.invalid && batch.touched'>
-              <option *ngFor='let batch of batches.db' value="{{batch}}">{{batch}}</option>
+              <option *ngFor='let batch of activecollectins' value="{{batch}}">{{batch}}</option>
             </select>
             <small *ngIf='batch.invalid && batch.touched' class="text-danger">this field is required</small>
           </div>
