@@ -32,6 +32,7 @@ import { UpdatesGuard } from './Guards/updates.guard';
 import { ProheaderComponent } from './profile/proheader/proheader.component';
 import { ErrorlogService } from './errorlog.service';
 import { ErrorsComponent } from './errors/errors.component';
+import { PrintformComponent } from './profile/printform/printform.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ErrorsComponent } from './errors/errors.component';
     UploadsComponent,
     AlertComponent,
     ProheaderComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    PrintformComponent
   ],
   imports: [
     BrowserModule,

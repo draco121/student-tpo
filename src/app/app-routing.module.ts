@@ -14,6 +14,7 @@ import { Form1Component } from './profile/fillform/form1/form1.component';
 import { Form2Component } from './profile/fillform/form2/form2.component';
 import { Form3Component } from './profile/fillform/form3/form3.component';
 import { Form4Component } from './profile/fillform/form4/form4.component';
+import { PrintformComponent } from './profile/printform/printform.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateformComponent } from './profile/updateform/updateform.component';
 import { UploadsComponent } from './profile/uploads/uploads.component';
@@ -88,6 +89,10 @@ const routes: Routes = [
             pathMatch: 'full'
           }
         ]
+      },
+      {
+            path: 'printform',
+            component: PrintformComponent
       },
       {
         path: 'updateform',

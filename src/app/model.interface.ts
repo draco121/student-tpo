@@ -16,6 +16,7 @@ export interface student{
     family_income: string;
     category:string;
     dob: string;
+    gender:string;
     altemail: string;
     p_add_l1: string;
     p_add_l2: string;
