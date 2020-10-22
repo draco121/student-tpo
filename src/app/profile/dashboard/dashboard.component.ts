@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
       this.doc =<student> JSON.parse(this.local.getItem('token'))
-      console.log(this.doc.photolink)
-  }
+      }
 
 }

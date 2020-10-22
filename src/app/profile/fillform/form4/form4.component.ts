@@ -11,9 +11,11 @@ export class Form4Component implements OnInit {
   constructor(
     public handler: FormhandlerService,
     private er: ErrorlogService
-  ) {}
+  ) {
+    this.alert = ""
+  }
   agree = false;
-  alert: string = '';
+  alert: string;
   ngOnInit(): void {}
 
   isdisabled(): boolean {
