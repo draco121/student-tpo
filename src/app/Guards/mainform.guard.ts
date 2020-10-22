@@ -25,7 +25,7 @@ export class MainformGuard implements CanActivateChild, CanActivate {
     await this.rc.getmasterlock(token.batch).then((lock) => {
       globalmasterlock = lock;
     });
-    return globalmasterlock && localmasterlock;
+    return globalmasterlock || localmasterlock;
   }
 
   canActivate(

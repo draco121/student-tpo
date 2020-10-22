@@ -57,8 +57,8 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
       isverified: false,
       ismainformsubmitted: false,
       isuploadformsubmitted: false,
-      master_lock:true,
-      secondary_lock: true,
+      master_lock:false,
+      secondary_lock: false,
     },
     { validators: this.validate.passmatch }
   );

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { windowToggle } from 'rxjs/operators';
 import { ErrorlogService } from 'src/app/errorlog.service';
+import { student } from 'src/app/model.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -133,7 +134,7 @@ export class FormhandlerService {
     private er: ErrorlogService
   ) {
     try {
-      let data = JSON.parse(window.sessionStorage.getItem('token'));
+      let data = <student>JSON.parse(window.sessionStorage.getItem('token'));
       this.main_form.patchValue(data);
     } catch (err) {
       this.er.log(err);
