@@ -174,7 +174,6 @@ export class FormhandlerService {
   merge(data: any) {
     try {
       this.main_form.patchValue(data);
-      console.log(this.main_form.value);
     } catch (err) {
       this.er.log(err);
     }

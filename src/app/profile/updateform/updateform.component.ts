@@ -97,8 +97,9 @@ export class UpdateformComponent implements OnInit {
           finalize(() => {
             let downurl = ref.getDownloadURL();
             downurl.subscribe((url) => {
+              let link:string = url.toString();
               this.updateform.patchValue({
-                photolink: url.toString(),
+                photolink: link
               });
             });
           })
