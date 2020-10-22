@@ -82,11 +82,10 @@ export class UpdateformComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/photo.jpg';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.photo);
-
+      let progress = document.getElementById('photostatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('photostatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -101,6 +100,7 @@ export class UpdateformComponent implements OnInit {
               this.updateform.patchValue({
                 photolink: link
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )

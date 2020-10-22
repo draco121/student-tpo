@@ -77,11 +77,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/photo.jpg';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.photo);
-
+      let progress = document.getElementById('photostatus');;
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('photostatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -96,6 +95,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 photolink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
@@ -110,11 +110,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/resume.pdf';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.resume);
-
+      let progress = document.getElementById('resumestatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('resumestatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -129,6 +128,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 resumelink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
@@ -143,11 +143,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/tenth.pdf';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.tnmarksheet);
-
+      let progress = document.getElementById('tnstatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('tnstatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -162,6 +161,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 tnlink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
@@ -176,11 +176,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/twelth.pdf';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.twmarksheet);
-
+      let progress = document.getElementById('twstatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('twstatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -195,6 +194,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 twlink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
@@ -209,11 +209,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/diploma.pdf';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.d_cert);
-
+      let progress = document.getElementById('dstatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('dstatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -228,6 +227,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 dlink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
@@ -242,11 +242,10 @@ export class UploadsComponent implements OnInit {
       let path = this.token.batch + '/' + this.token.rollno + '/degree.pdf';
       let ref = this.cloud.ref(path);
       let task = this.cloud.upload(path, this.g_cert);
-
+      let progress = document.getElementById('gstatus');
       task.percentageChanges().subscribe((obs) => {
-        let progress = document.getElementById('gstatus');
         progress.style.width = obs.toString() + '%';
-        if (obs === 100) progress.style.backgroundColor = 'green';
+        if (obs === 100) progress.style.backgroundColor = 'yellow';
         else {
           progress.style.backgroundColor = 'brown';
         }
@@ -261,6 +260,7 @@ export class UploadsComponent implements OnInit {
               this.uploads.patchValue({
                 glink: url,
               });
+              progress.style.backgroundColor = 'green';
             });
           })
         )
