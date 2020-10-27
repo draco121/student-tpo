@@ -24,8 +24,7 @@ export class PrintformComponent implements OnInit {
       var width = pdf.internal.pageSize.getWidth();
       var height = pdf.internal.pageSize.getHeight();
       html2canvas(data,{
-        useCORS:true,
-        allowTaint:true
+        useCORS:true
       }).then(canvas => {
         // Few necessary setting options
 
