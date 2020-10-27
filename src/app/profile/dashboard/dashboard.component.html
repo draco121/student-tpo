@@ -11,7 +11,7 @@
         <span *ngIf='!doc.isverified' class="btn btn-danger" style="width: fit-content;border-radius: 50%;margin: auto auto;"><i class="fa fa-times" aria-hidden="true" style="margin: auto auto;"></i>
         </span>
       </div>
-        <hr/>button
+        <hr/>
       <div class="list-group">
         <a class="list-group-item list-group-item-action active disabled">Quick Links</a>
         <a class="list-group-item list-group-item-action " routerLink='../fillform'>Fill Form</a>
@@ -19,8 +19,7 @@
         <a class="list-group-item list-group-item-action " routerLink='../uploads'>Upload Documents</a>
         <a class="list-group-item list-group-item-action " routerLink='../printform'>Print Form</a>
         <hr/>
-        <a class="list-group-item list-group-item-action ">Logout</a>
-        <a class="list-group-item list-group-item-action ">Home</a>
+        <a class="list-group-item list-group-item-action" type="button" (click)='logout()' >Logout</a>
       </div>
     </div>
     <div class="col-lg-9">
@@ -41,7 +40,8 @@
               HELPDESK
             </div>
             <div class="card-body">
-              please contact srijan khatri
+              please contact JEC JABALPUR TRAINING AND PLACEMENT OFFICE.<br/>
+              in case of any qurey write to us on "tpo.student@jecjabalpur.ac.in"
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import { MainformGuard } from './Guards/mainform.guard';
 import { UpdatesGuard } from './Guards/updates.guard';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './profile/alert/alert.component';
+import { CocComponent } from './profile/coc/coc.component';
 import { DashboardComponent } from './profile/dashboard/dashboard.component';
 import { FillformComponent } from './profile/fillform/fillform.component';
 import { Form1Component } from './profile/fillform/form1/form1.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'coc',
+        component: CocComponent
       },
       {
         path: 'dashboard',

@@ -33,6 +33,7 @@ import { ProheaderComponent } from './profile/proheader/proheader.component';
 import { ErrorlogService } from './errorlog.service';
 import { ErrorsComponent } from './errors/errors.component';
 import { PrintformComponent } from './profile/printform/printform.component';
+import { CocComponent } from './profile/coc/coc.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { PrintformComponent } from './profile/printform/printform.component';
     AlertComponent,
     ProheaderComponent,
     ErrorsComponent,
-    PrintformComponent
+    PrintformComponent,
+    CocComponent
   ],
   imports: [
     BrowserModule,
