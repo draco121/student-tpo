@@ -1,34 +1,223 @@
 <div class="container" id="form">
   <span class="btn btn-success btn-small" (click)='print()'>print</span>
-  <div class="text-center"><h1>{{data.rollno.toUpperCase()}}</h1></div>
-  <hr/>
-  <div class="row">
-    <div class="col-lg-9">
-        <div class="row">
-          <div class="col">
-            Name: {{data.fname}} {{data.lname}}
-            <hr/>
-            Email: {{data.email}}
-            <hr/>
-            Phone Number: {{data.phone}}
-            <hr/>
-            Batch: {{data.batch}}
-          </div>
-          <div class="col">
-            Date Of Birth: {{data.dob}}
-            <hr/>
-            Gender: {{data.gender}}
-            <hr/>
-            Branch: {{data.branch}}
-            <hr/>
-            Address: {{data.p_add_l1}} {{data.p_add_l2}} {{data.p_city}} {{data.p_state}}
-                     {{data.p_country}}
-          </div>
-        </div>
-    </div>
-    <div class="col text-center">
-      <img [src]='data.photolink'
-      class="img-thumbnail" style="width: 150px;height: 200px;border-radius: 5%; object-fit:contain;margin: auto auto;">
+  <div class="text-center">
+    <h1>{{data.rollno.toUpperCase()}}</h1>
+  </div>
+  <hr />
+  <div class="row text-center">
+    <div class="col">
+      <img [src]='data.photolink' class="img-thumbnail"
+        style="width: 150px;height: 200px;border-radius: 5%; object-fit:contain;margin: auto auto;">
     </div>
   </div>
+  <hr />
+  <h5 class="text-center"><u>PERSONAL INFORMATION</u></h5>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <b>name</b>: {{data.fname}} {{data.lname}}
+      <br />
+      <b>email:</b> {{data.email}}
+      <br />
+      <b>phone number:</b> {{data.phone}}
+      <br />
+      <b>category:</b> {{data.category}}
+      <br />
+      <b>gender:</b> {{data.gender}}
+    </div>
+    <div class="col">
+      <b>date of birth:</b> {{data.dob}}
+      <br />
+      <b>alternate email:</b> {{data.altemail}}
+      <br />
+      <b>alternate phone:</b> {{data.altphone}}
+      <br />
+      <b>family income:</b> {{data.family_income}}
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <b>father's name:</b> {{data.father_name}}<br />
+      <b>father's occupation:</b> {{data.father_occ}}
+    </div>
+    <div class="col">
+      <b>mother's name:</b> {{data.mother_name}}<br />
+      <b>mother's occupation:</b> {{data.mother_occ}}
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <b>permanent address:</b> <p>
+        {{data.p_add_l1}} {{data.p_add_l2}}<br />
+        {{data.p_city}} {{data.p_state}} {{data.p_country}}<br />
+        {{data.p_zip}}</p>
+    </div>
+    <div class="col">
+      <b>current address:</b>  <p>
+        {{data.c_add_l1}} {{data.c_add_l2}}<br />
+        {{data.c_city}} {{data.c_state}} {{data.c_country}}<br />
+        {{data.c_zip}}</p>
+    </div>
+  </div>
+  <hr />
+  <h5 class="text-center"><u>ACADEMIC DETAILS</u></h5>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <b>admission year:</b> {{data.admission_year}}
+      <br />
+      <b>passing year:</b> {{data.passing_year}}
+      <br />
+      <b>branch:</b> {{data.branch}}
+      <br />
+      <b>semester:</b> {{data.curr_sem}}
+      <br />
+      <b>course:</b> {{data.course}}
+    </div>
+    <div class="col">
+      <b>CGPA:</b> {{data.curr_cgpa}}
+      <br />
+      <b>total backlogs:</b> {{data.total_backlog}}
+      <br />
+      <b>active backlogs:</b> {{data.active_backlog}}
+      <br />
+      <b>year backlogs:</b> {{data.fail_year}}
+      <br />
+      <b>drop years:</b> {{data.drop_year}}
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <b>major training:</b> {{data.major_training}}
+      <br />
+      <b>major project:</b> {{data.major_project}}
+    </div>
+    <div class="col">
+      <b>minor training:</b> {{data.minor_training}}
+      <br />
+      <b>minor project:</b> {{data.minor_project}}
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">sem</th>
+          <th scope="col">1</th>
+          <th scope="col">2</th>
+          <th scope="col">3</th>
+          <th scope="col">4</th>
+          <th scope="col">5</th>
+          <th scope="col">6</th>
+          <th scope="col">7</th>
+          <th scope="col">8</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">sgpa</th>
+          <td>{{data.sem1_sgpa}}</td>
+          <td>{{data.sem2_sgpa}}</td>
+          <td>{{data.sem3_sgpa}}</td>
+          <td>{{data.sem4_sgpa}}</td>
+          <td>{{data.sem5_sgpa}}</td>
+          <td>{{data.sem6_sgpa}}</td>
+          <td>{{data.sem7_sgpa}}</td>
+          <td>{{data.sem8_sgpa}}</td>
+        </tr>
+        <tr>
+          <th scope="row">earned credit</th>
+          <td>{{data.sem1_earned_credit}}</td>
+          <td>{{data.sem2_earned_credit}}</td>
+          <td>{{data.sem3_earned_credit}}</td>
+          <td>{{data.sem4_earned_credit}}</td>
+          <td>{{data.sem5_earned_credit}}</td>
+          <td>{{data.sem6_earned_credit}}</td>
+          <td>{{data.sem7_earned_credit}}</td>
+          <td>{{data.sem8_earned_credit}}</td>
+        </tr>
+        <tr>
+          <th scope="row">total credit</th>
+          <td>{{data.sem1_total_credit}}</td>
+          <td>{{data.sem2_total_credit}}</td>
+          <td>{{data.sem3_total_credit}}</td>
+          <td>{{data.sem4_total_credit}}</td>
+          <td>{{data.sem5_total_credit}}</td>
+          <td>{{data.sem6_total_credit}}</td>
+          <td>{{data.sem7_total_credit}}</td>
+          <td>{{data.sem8_total_credit}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr />
+  <h5 class="text-center"><u>PREVIOUS ACADEMIC DETAILS</u></h5>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <hr />
+      <p class="text-center"><u>TENTH DETAILS</u></p>
+      <hr />
+      <b>board:</b> {{data.tn_board}}
+      <br />
+      <b>passing year:</b> {{data.tn_pass_year}}
+      <br />
+      <b>percentage:</b> {{data.tn_agg_percent}}
+      <br />
+      <b>school:</b> {{data.tn_school}}
+      <br />
+      <b>address:</b> {{data.tn_city}} {{data.tn_state}} {{data.tn_zip}}
+    </div>
+    <div class="col">
+      <hr />
+      <p class="text-center"><u>TWELTH DETAILS</u></p>
+      <hr />
+      <b>board:</b> {{data.tw_board}}
+      <br />
+      <b>passing year:</b> {{data.tw_pass_year}}
+      <br />
+      <b>percentage:</b> {{data.tw_agg_percent}}
+      <br />
+      <b>school:</b> {{data.tw_school}}
+      <br />
+      <b>address:</b> {{data.tw_city}} {{data.tw_state}} {{data.tw_zip}}
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <hr />
+      <p class="text-center"><u>DIPLOMA DETAILS</u></p>
+      <hr />
+      <b>university:</b> {{data.d_university}}
+      <br />
+      <b>passing year:</b> {{data.d_pass_year}}
+      <br />
+      <b>percentage:</b> {{data.d_agg_percent}}
+      <br />
+      <b>course:</b> {{data.d_course}}
+      <br />
+      <b>address:</b> {{data.d_city}} {{data.d_state}} {{data.d_zip}}
+    </div>
+    <div class="col">
+      <hr />
+      <p class="text-center"><u>DEGREE DETAILS</u></p>
+      <hr />
+      <b>university:</b> {{data.g_university}}
+      <br />
+      <b>passing year:</b> {{data.g_pass_year}}
+      <br />
+      <b>degree:</b> {{data.g_degree}}
+      <br />
+      <b>course:</b> {{data.g_course}}
+      <br />
+      <b>percentage:</b> {{data.g_agg_percent}}
+      <br />
+      <b>address:</b> {{data.g_city}} {{data.g_state}} {{data.g_zip}}
+    </div>
+  </div>
+  <hr/>
 </div>
