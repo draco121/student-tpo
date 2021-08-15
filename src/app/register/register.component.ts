@@ -8,7 +8,9 @@ import {
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
+import { environment } from 'src/environments/environment';
 import { AdmincontrolService } from '../controller/admincontrol.service';
 import { CustomValidators } from '../CustomValidators/CustomValidators';
 import { ErrorlogService } from '../errorlog.service';
@@ -78,7 +80,8 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     private validate: CustomValidators,
     private afa: AngularFireAuth,
     private ac: AdmincontrolService,
-    private er: ErrorlogService
+    private er: ErrorlogService,
+    private router: Router
   ) {
     this.ac
       .getactivecollections()
@@ -179,27 +182,27 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     }
   }
 
-  sendemailotp() {
-    try {
-      const actionCodeSettings = {
-        // Your redirect URL
-        url: 'https://test-4bf63.web.app/verifyemail',
-        handleCodeInApp: true,
-      };
-      this.afa
-        .sendSignInLinkToEmail(this.register.value.email, actionCodeSettings)
-        .then((confirmationResult) => {
-          this.local.setItem('email', this.register.value.email);
-          this.isemailotpsent = true;
-        })
-        .catch((err) => {
-          this.alert = 'unknown error occured';
-          this.er.log(err);
-        });
-    } catch (err) {
-      this.er.log(err);
-    }
-  }
+  // sendemailotp() {
+  //   try {
+  //     const actionCodeSettings = {
+  //       // Your redirect URL
+  //       url: environment.verifyurl,
+  //       handleCodeInApp: true,
+  //     };
+  //     this.afa
+  //       .sendSignInLinkToEmail(this.register.value.email, actionCodeSettings)
+  //       .then((confirmationResult) => {
+  //         this.local.setItem('email', this.register.value.email);
+  //         this.isemailotpsent = true;
+  //       })
+  //       .catch((err) => {
+  //         this.alert = 'unknown error occured';
+  //         this.er.log(err);
+  //       });
+  //   } catch (err) {
+  //     this.er.log(err);
+  //   }
+  // }
 
   Submit() {
     try {
@@ -210,14 +213,17 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            this.alert = 'doc already exists';
+            this.alert = 'user already exists';
           } else {
             this.db
               .doc(id.toUpperCase())
               .set(this.register.value)
               .then((res) => {
                 window.alert('registration successfull');
-              })
+              }).then((res)=>{
+                this.router.navigate(['login']);
+              }
+              )
               .catch((err) => {
                 this.er.log(err);
               });
@@ -235,7 +241,7 @@ export class RegisterComponent implements OnInit, AfterViewInit, DoCheck {
     try {
       if (this.register.invalid) return true;
       else {
-        if (this.isphoneotpverified && this.isemailotpverified) return false;
+        if (this.isphoneotpverified) return false;
         else return true;
       }
     } catch (err) {

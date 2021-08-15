@@ -12,7 +12,7 @@
               <small *ngIf='fname.invalid&&fname.touched' class="text-danger"> field is required</small>
             </div>
             <div class="col">
-              <label for='mname'>Middile Name</label>
+              <label for='mname'>Middle Name</label>
               <input type='text' id='mname' class="form-control" formControlName='mname'>
             </div>
             <div class="col">
@@ -85,9 +85,9 @@
                 <small *ngIf='email.errors?.required' class='text-danger'>this field is required</small>
               </div>
             </div>
-            <div class="col">
+            <!-- <div class="col">
               <button class="btn btn-success" [disabled]='email.invalid' type='button' style="margin-top: 32px;" (click)='sendemailotp()'>verify</button>
-            </div>
+            </div> -->
             <div class="col" *ngIf='isemailotpsent'>
               <small class="text-success" style="margin-top: 32px;">please check email sent to you</small>
               <i class="fa fa-check" *ngIf='isemailotpverified' aria-hidden="true" style="color: green; "></i>

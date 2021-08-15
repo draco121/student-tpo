@@ -5,15 +5,15 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyBGDSHrnawYVnzH9dJLXCjqhNLncd1r0DE",
-    authDomain: "test-4bf63.firebaseapp.com",
-    databaseURL: "https://test-4bf63.firebaseio.com",
-    projectId: "test-4bf63",
-    storageBucket: "test-4bf63.appspot.com",
-    messagingSenderId: "18951575270",
-    appId: "1:18951575270:web:bb606bab74ea854afbcd27",
-    measurementId: "G-0GBHQWGQH2"
-  }
+    apiKey: "AIzaSyBHjDlVedZjkina8NxNCnAiX0PhUfMCRQM",
+    authDomain: "student-tpo.firebaseapp.com",
+    projectId: "student-tpo",
+    storageBucket: "student-tpo.appspot.com",
+    messagingSenderId: "244627861901",
+    appId: "1:244627861901:web:f20c8d71e98408f737cdc4",
+    measurementId: "G-F9YZNPBF7J"
+  },
+  verifyurl : "https://student.jec-jabalpur.org/verifyemail"
 };
 
 /*
