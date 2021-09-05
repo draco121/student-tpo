@@ -113,7 +113,7 @@ export class FormhandlerService {
     isblacklisted: false,
     isverified: false,
     master_lock: false,
-    secondary_lock: false,
+    secondary_lock: true,
     ismainformsubmitted: false,
     isuploadformsubmitted: false,
     photolink: [''],

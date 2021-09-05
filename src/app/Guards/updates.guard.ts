@@ -19,15 +19,22 @@ export class UpdatesGuard implements CanActivate {
   localsecondarylock: boolean;
   constructor(private rc: AdmincontrolService, private router: Router) {}
 
-  async islocked(): Promise<boolean> {
+  async islocked() {
     let token = <student>JSON.parse(window.sessionStorage.getItem('token'));
-    let localsecondarylock = token.secondary_lock;
-    let globalsecondarylock: boolean;
+    this.localsecondarylock = token.secondary_lock;
+    //let globalsecondarylock: boolean;
     await this.rc.getsecondarylock(token.batch).then((lock) => {
-      globalsecondarylock = lock;
-      console.log(globalsecondarylock);
+      this.globalsecondarylock = lock;
+      console.log(this.globalsecondarylock);
     });
-    return localsecondarylock && globalsecondarylock;
+    // if(localsecondarylock){
+    //   return true;
+    // }else if(globalsecondarylock){
+    //   return true;
+    // }
+    // else{
+    //   return false;
+    // }
   }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -37,13 +44,14 @@ export class UpdatesGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.islocked().then((lock) => {
-      if (!lock) {
+      this.islocked();
+      if(this.globalsecondarylock){
+        if(this.localsecondarylock){
+          this.router.navigateByUrl('/profile/alert');
+          return false;
+        }
+      }else{
         return true;
-      } else {
-        this.router.navigateByUrl('/profile/alert');
-        return false;
       }
-    });
   }
 }
