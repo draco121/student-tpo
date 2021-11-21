@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.1.4",
     "@angular/router": "~10.1.4",
     "bootstrap": "^4.5.2",
-    "firebase": "^7.13.1",
+    "firebase": "^7.24.0",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-rc.7",
     "jquery": "^3.5.1",

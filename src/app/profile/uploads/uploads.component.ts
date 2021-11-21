@@ -63,7 +63,7 @@ export class UploadsComponent implements OnInit {
   }
   setg(event: any) {
     if (event.target.files.length > 0) {
-      this.photo = event.target.files[0];
+      this.g_cert = event.target.files[0];
     }
   }
   setresume(event: any) {
